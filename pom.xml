@@ -44,8 +44,29 @@
     <module>activiti-build</module>
     <module>activiti-core-common</module>
     <module>activiti-api</module>
+    <module>activiti-dependencies</module>
 
     <module>Activiti</module>
+
+    <module>activiti-cloud-api</module>
+    <module>activiti-cloud-service-common</module>
+    <module>activiti-cloud-runtime-bundle-service</module>
+
+    <module>activiti-cloud-app-service</module>
+    <module>activiti-cloud-dependencies</module>
+    <module>activiti-cloud-audit</module>
+    <module>activiti-cloud-audit-service</module>
+    <module>activiti-cloud-build</module>
+    <module>activiti-cloud-common-chart</module>
+    <module>activiti-cloud-connectors</module>
+    <module>activiti-cloud-examples</module>
+    <module>activiti-cloud-full-chart</module>
+    <module>activiti-cloud-gateway</module>
+    <module>activiti-cloud-modeling-build</module>
+    <module>activiti-cloud-modeling-dependencies</module>
+    <module>activiti-cloud-org-service</module>
+    <module>activiti-cloud-query-service</module>
+
 
   </modules>
 
