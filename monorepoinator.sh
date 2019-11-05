@@ -2,7 +2,7 @@
 
 SCRIPT_DIR="$(cd "$( dirname "$0" )" && pwd)"
 
-monorepo_dir=$SCRIPT_DIR/../activiti-monorepo-dest-poc7
+monorepo_dir=$SCRIPT_DIR/../activiti-monorepo-dest
 git_base_url="git@github.com:Activiti"
 git_branch="develop"
 shopt -s extglob
