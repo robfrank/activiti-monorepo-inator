@@ -2,12 +2,27 @@
 
 SCRIPT_DIR="$(cd "$( dirname "$0" )" && pwd)"
 
-monorepo_dir=$SCRIPT_DIR/../activiti-monorepo-dest
+added_parent=" <parent> 
+    <groupId>org.activiti<\/groupId> 
+    <artifactId>activiti-mono-aggregator<\/artifactId>
+    <version>7.1.0-SNAPSHOT<\/version>
+    <relativePath>..\/<\/relativePath>
+  <\/parent>"
+
+original_relative="\<relativePath\/>"
+
+updated_relative="\<relativePath>..\/activiti-build<\/relativePath>"
+
+monorepo_dir=$SCRIPT_DIR/../activiti-monorepo-dest-poc5
 git_base_url="git@github.com:Activiti"
 git_branch="develop"
 shopt -s extglob
 
-repositories="activiti-build|Activiti|activiti-api|activiti-dependencies|activiti-core-common|activiti-cloud-api|activiti-cloud-app-service|activiti-cloud-audit|activiti-cloud-audit-service|activiti-cloud-build|activiti-cloud-common-chart|activiti-cloud-connectors|activiti-cloud-dependencies|activiti-cloud-examples|activiti-cloud-full-chart|activiti-cloud-gateway|activiti-cloud-modeling-build|activiti-cloud-modeling-dependencies|activiti-cloud-org-service|activiti-cloud-query-service|activiti-cloud-runtime-bundle-service|activiti-cloud-service-common"
+# all module, cloud included
+# repositories="activiti-build|Activiti|activiti-api|activiti-dependencies|activiti-core-common|activiti-cloud-api|activiti-cloud-app-service|activiti-cloud-audit|activiti-cloud-audit-service|activiti-cloud-build|activiti-cloud-connectors|activiti-cloud-dependencies|activiti-cloud-examples|activiti-cloud-gateway|activiti-cloud-modeling-build|activiti-cloud-modeling-dependencies|activiti-cloud-org-service|activiti-cloud-query-service|activiti-cloud-runtime-bundle-service|activiti-cloud-service-common"
+
+# only build, core, commons
+repositories="activiti-build|Activiti|activiti-api|activiti-dependencies|activiti-core-common|activiti-examples"
 
 files_to_delete=".dependabot,.dockerignore,.editorconfig,.helmignore,.mergify.yml,.travis.yml,.updatebot.yml,.gitignore,.codecov.yml"
 
@@ -31,8 +46,11 @@ do
     echo "start working on $repo"
 
     git remote add -f $repo $git_base_url/$repo.git
-    git merge --no-edit --allow-unrelated-histories  $repo/$git_branch
-
+    if [ $repo == "activiti-examples" ] ; then 
+        git merge --no-edit --allow-unrelated-histories  $repo/master
+    else 
+        git merge --no-edit --allow-unrelated-histories  $repo/$git_branch
+    fi
     mkdir $repo
 
     git mv ./!($repositories) ./$repo
@@ -44,12 +62,47 @@ do
             git rm -rf $file
         fi        
     done    
+    echo "fix relative path of parent"
+    sed "s/$original_relative/$updated_relative/g" $repo/pom.xml
+
     git commit -m "Moving $repo into its own subdirectory"
    
     echo "done $repo"
 
 done
 
+echo "Renaming Activiti to activiti"
+git mv Activiti activiti-core
+git commit -m "renaming Activiti to activiti-core"
+
 echo "copying new parent pom"
-cd $SCRIPT_DIR
 cp $SCRIPT_DIR/pom.xml $monorepo_dir
+
+echo "fix CRLF on poms"
+find . -name pom.xml -exec dos2unix {} \;
+
+#echo "set all dependencies to SNANPSHOT"
+#sed "/<modelVersion>4.0.0<\/modelVersion>/i $added_parent" $monorepo_dir/activiti-build/pom.xml
+# sed "4 a \ $added_parent" $monorepo_dir/activiti-build/pom.xml
+echo "fix child versions"
+mvn versions:update-child-modules -DallowSnapshots=true
+mvn versions:commit
+git commit -m "fix child versions" .
+
+# mvn versions:update-properties -DexcludeReactor=false -Dincludes="org.activiti, org.activiti.*" -DallowSnapshots=true -DprocessParent=true
+echo "update pom properties"
+mvn versions:update-properties 
+git commit -m "update pom properties" .
+
+#echo "apply patch to fix poms"
+#git apply -v $SCRIPT_DIR/fix-pom.patch
+
+echo "copying travis build file"
+cp $SCRIPT_DIR/.gitignore $monorepo_dir
+cp $SCRIPT_DIR/.travis.yml $monorepo_dir
+
+git add .
+git commit -m "add travis config" .
+
+cd $SCRIPT_DIR
+
