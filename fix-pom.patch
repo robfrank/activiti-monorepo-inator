@@ -1,0 +1,303 @@
+diff --git a/activiti-api/pom.xml b/activiti-api/pom.xml
+index 488d1ef6b..03dac2395 100644
+--- a/activiti-api/pom.xml
++++ b/activiti-api/pom.xml
+@@ -6,7 +6,7 @@
+     <groupId>org.activiti.build</groupId>
+     <artifactId>activiti-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version> <!-- using fixed version for CI/CD -->
+-    <relativePath/>
++    <relativePath>../activiti-build</relativePath>
+   </parent>
+   <groupId>org.activiti.api</groupId>
+   <artifactId>activiti-api</artifactId>
+diff --git a/activiti-build/activiti-dependencies-parent/pom.xml b/activiti-build/activiti-dependencies-parent/pom.xml
+index 133bf8c54..55766a72b 100644
+--- a/activiti-build/activiti-dependencies-parent/pom.xml
++++ b/activiti-build/activiti-dependencies-parent/pom.xml
+@@ -27,7 +27,7 @@
+   <packaging>pom</packaging>
+   <name>Activiti :: Dependencies Parent</name>
+   <properties>
+-    <spring-boot.version>2.2.0.RELEASE</spring-boot.version>
++    <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
+   </properties>
+   <dependencyManagement>
+     <dependencies>
+diff --git a/activiti-build/pom.xml b/activiti-build/pom.xml
+index 722146cc2..98782aa2d 100644
+--- a/activiti-build/pom.xml
++++ b/activiti-build/pom.xml
+@@ -2,6 +2,13 @@
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
++  <parent>
++    <groupId>org.activiti</groupId>
++    <version>7.1.0-SNAPSHOT</version>
++    <artifactId>activiti-mono-aggregator</artifactId>
++    <relativePath>../</relativePath>
++  </parent>
++
+   <groupId>org.activiti.build</groupId>
+   <artifactId>activiti-parent</artifactId>
+   <version>7.1.0-SNAPSHOT</version>
+diff --git a/activiti-core-common/pom.xml b/activiti-core-common/pom.xml
+index f7e0712e6..b77b77ad6 100644
+--- a/activiti-core-common/pom.xml
++++ b/activiti-core-common/pom.xml
+@@ -5,7 +5,7 @@
+     <groupId>org.activiti.build</groupId>
+     <artifactId>activiti-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
+-    <relativePath/>
++    <relativePath>../activiti-build</relativePath>
+   </parent>
+   <groupId>org.activiti.core.common</groupId>
+   <artifactId>activiti-core-common-parent</artifactId>
+diff --git a/activiti-core/pom.xml b/activiti-core/pom.xml
+index e0149902c..360717a1d 100644
+--- a/activiti-core/pom.xml
++++ b/activiti-core/pom.xml
+@@ -6,7 +6,7 @@
+     <groupId>org.activiti.build</groupId>
+     <artifactId>activiti-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
+-    <relativePath/>
++    <relativePath>../activiti-build</relativePath>
+   </parent>
+   <groupId>org.activiti</groupId>
+   <artifactId>activiti-root</artifactId>
+diff --git a/activiti-dependencies/pom.xml b/activiti-dependencies/pom.xml
+index b161ac948..ddd2a40b1 100755
+--- a/activiti-dependencies/pom.xml
++++ b/activiti-dependencies/pom.xml
+@@ -7,7 +7,7 @@
+     <groupId>org.activiti.build</groupId>
+     <artifactId>activiti-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
+-    <relativePath/>
++    <relativePath>../activiti-build</relativePath>
+   </parent>
+   
+   <groupId>org.activiti.dependencies</groupId>
+diff --git a/activiti-examples/activiti-api-basic-connector-example/pom.xml b/activiti-examples/activiti-api-basic-connector-example/pom.xml
+index 9d93f4b48..98348a505 100644
+--- a/activiti-examples/activiti-api-basic-connector-example/pom.xml
++++ b/activiti-examples/activiti-api-basic-connector-example/pom.xml
+@@ -5,17 +5,17 @@
+ 
+   <groupId>org.activiti.examples</groupId>
+   <artifactId>activiti-api-basic-connector-examples</artifactId>
+-  <version>0.0.1-SNAPSHOT</version>
++  <version>7.1.0-SNAPSHOT</version>
+   <packaging>jar</packaging>
+ 
+   <name>Activiti API Basic Connector Examples</name>
+   <description>Activiti API Basic Connector Examples</description>
+ 
+   <parent>
+-    <groupId>org.springframework.boot</groupId>
+-    <artifactId>spring-boot-starter-parent</artifactId>
+-    <version>2.1.6.RELEASE</version>
+-    <relativePath/> <!-- lookup parent from repository -->
++    <groupId>org.activiti.examples</groupId>
++    <artifactId>activiti-examples-parent</artifactId>
++    <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../</relativePath>
+   </parent>
+ 
+   <properties>
+diff --git a/activiti-examples/activiti-api-basic-full-example-bean/pom.xml b/activiti-examples/activiti-api-basic-full-example-bean/pom.xml
+index 697788688..c28582edd 100644
+--- a/activiti-examples/activiti-api-basic-full-example-bean/pom.xml
++++ b/activiti-examples/activiti-api-basic-full-example-bean/pom.xml
+@@ -5,17 +5,17 @@
+ 
+   <groupId>org.activiti.examples</groupId>
+   <artifactId>activiti-api-basic-full-example</artifactId>
+-  <version>0.0.1-SNAPSHOT</version>
++  <version>7.1.0-SNAPSHOT</version>
+   <packaging>jar</packaging>
+ 
+   <name>Activiti API Basic Process and Tasks Examples</name>
+   <description>Activiti API Basic Process and Tasks Examples</description>
+ 
+   <parent>
+-    <groupId>org.springframework.boot</groupId>
+-    <artifactId>spring-boot-starter-parent</artifactId>
+-    <version>2.1.6.RELEASE</version>
+-    <relativePath/> <!-- lookup parent from repository -->
++    <groupId>org.activiti.examples</groupId>
++    <artifactId>activiti-examples-parent</artifactId>
++    <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../</relativePath>
+   </parent>
+ 
+   <properties>
+diff --git a/activiti-examples/activiti-api-basic-full-example-nobean/pom.xml b/activiti-examples/activiti-api-basic-full-example-nobean/pom.xml
+index 990ff1366..3880ddeef 100644
+--- a/activiti-examples/activiti-api-basic-full-example-nobean/pom.xml
++++ b/activiti-examples/activiti-api-basic-full-example-nobean/pom.xml
+@@ -5,17 +5,17 @@
+ 
+   <groupId>org.activiti.examples</groupId>
+   <artifactId>activiti-api-basic-full-example-custombean</artifactId>
+-  <version>0.0.1-SNAPSHOT</version>
++  <version>7.1.0-SNAPSHOT</version>
+   <packaging>jar</packaging>
+ 
+   <name>Activiti API Basic Process and Tasks Examples</name>
+   <description>Activiti API Basic Process and Tasks Examples</description>
+ 
+   <parent>
+-    <groupId>org.springframework.boot</groupId>
+-    <artifactId>spring-boot-starter-parent</artifactId>
+-    <version>2.1.6.RELEASE</version>
+-    <relativePath/> <!-- lookup parent from repository -->
++    <groupId>org.activiti.examples</groupId>
++    <artifactId>activiti-examples-parent</artifactId>
++    <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../</relativePath>
+   </parent>
+ 
+   <properties>
+diff --git a/activiti-examples/activiti-api-basic-process-example/pom.xml b/activiti-examples/activiti-api-basic-process-example/pom.xml
+index 6e78d1fef..9063a5667 100644
+--- a/activiti-examples/activiti-api-basic-process-example/pom.xml
++++ b/activiti-examples/activiti-api-basic-process-example/pom.xml
+@@ -5,17 +5,17 @@
+ 
+   <groupId>org.activiti.examples</groupId>
+   <artifactId>activiti-api-basic-process-examples</artifactId>
+-  <version>0.0.1-SNAPSHOT</version>
++  <version>7.1.0-SNAPSHOT</version>
+   <packaging>jar</packaging>
+ 
+   <name>Activiti API Basic Process Examples</name>
+   <description>Activiti API Basic Process Examples</description>
+ 
+   <parent>
+-    <groupId>org.springframework.boot</groupId>
+-    <artifactId>spring-boot-starter-parent</artifactId>
+-    <version>2.1.6.RELEASE</version>
+-    <relativePath/> <!-- lookup parent from repository -->
++    <groupId>org.activiti.examples</groupId>
++    <artifactId>activiti-examples-parent</artifactId>
++    <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../</relativePath>
+   </parent>
+ 
+   <properties>
+diff --git a/activiti-examples/activiti-api-basic-task-example/pom.xml b/activiti-examples/activiti-api-basic-task-example/pom.xml
+index feb91cc38..203d2a9f9 100644
+--- a/activiti-examples/activiti-api-basic-task-example/pom.xml
++++ b/activiti-examples/activiti-api-basic-task-example/pom.xml
+@@ -5,17 +5,17 @@
+ 
+   <groupId>org.activiti.examples</groupId>
+   <artifactId>activiti-api-basic-task-examples</artifactId>
+-  <version>0.0.1-SNAPSHOT</version>
++  <version>7.1.0-SNAPSHOT</version>
+   <packaging>jar</packaging>
+ 
+   <name>Activiti API Basic Task Examples</name>
+   <description>Activiti API Basic Task Examples</description>
+ 
+   <parent>
+-    <groupId>org.springframework.boot</groupId>
+-    <artifactId>spring-boot-starter-parent</artifactId>
+-    <version>2.1.6.RELEASE</version>
+-    <relativePath/> <!-- lookup parent from repository -->
++    <groupId>org.activiti.examples</groupId>
++    <artifactId>activiti-examples-parent</artifactId>
++    <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../</relativePath>
+   </parent>
+ 
+   <properties>
+diff --git a/activiti-examples/activiti-api-spring-integration-example/pom.xml b/activiti-examples/activiti-api-spring-integration-example/pom.xml
+index ad36df862..25721eeb6 100644
+--- a/activiti-examples/activiti-api-spring-integration-example/pom.xml
++++ b/activiti-examples/activiti-api-spring-integration-example/pom.xml
+@@ -5,17 +5,17 @@
+ 
+   <groupId>org.activiti.examples</groupId>
+   <artifactId>activiti-api-spring-integration-example</artifactId>
+-  <version>0.0.1-SNAPSHOT</version>
++  <version>7.1.0-SNAPSHOT</version>
+   <packaging>jar</packaging>
+ 
+   <name>Activiti API Spring Integration Examples</name>
+   <description>Activiti API Spring Integration Examples</description>
+ 
+   <parent>
+-    <groupId>org.springframework.boot</groupId>
+-    <artifactId>spring-boot-starter-parent</artifactId>
+-    <version>2.1.6.RELEASE</version>
+-    <relativePath/> <!-- lookup parent from repository -->
++    <groupId>org.activiti.examples</groupId>
++    <artifactId>activiti-examples-parent</artifactId>
++    <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../</relativePath>
+   </parent>
+ 
+   <properties>
+diff --git a/activiti-examples/activiti-api-web-example/pom.xml b/activiti-examples/activiti-api-web-example/pom.xml
+index 3fe33e0d3..e0179f7ad 100644
+--- a/activiti-examples/activiti-api-web-example/pom.xml
++++ b/activiti-examples/activiti-api-web-example/pom.xml
+@@ -21,17 +21,17 @@
+ 
+   <groupId>org.activiti</groupId>
+   <artifactId>activiti-api-web-examples</artifactId>
+-  <version>0.0.1-SNAPSHOT</version>
++  <version>7.1.0-SNAPSHOT</version>
+   <packaging>jar</packaging>
+ 
+   <name>Activiti API Web Examples</name>
+   <description>Activiti API Web Examples</description>
+ 
+   <parent>
+-    <groupId>org.springframework.boot</groupId>
+-    <artifactId>spring-boot-starter-parent</artifactId>
+-    <version>2.1.6.RELEASE</version>
+-    <relativePath/> <!-- lookup parent from repository -->
++    <groupId>org.activiti.examples</groupId>
++    <artifactId>activiti-examples-parent</artifactId>
++    <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../</relativePath>
+   </parent>
+ 
+   <properties>
+diff --git a/activiti-examples/pom.xml b/activiti-examples/pom.xml
+index 0c8ef3c81..c697c25f1 100644
+--- a/activiti-examples/pom.xml
++++ b/activiti-examples/pom.xml
+@@ -3,14 +3,25 @@
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <modelVersion>4.0.0</modelVersion>
+ 
++    <parent>
++        <groupId>org.activiti.build</groupId>
++        <artifactId>activiti-parent</artifactId>
++        <version>7.1.0-SNAPSHOT</version>
++        <relativePath>../activiti-build</relativePath>
++    </parent>
++
+     <groupId>org.activiti.examples</groupId>
+     <artifactId>activiti-examples-parent</artifactId>
+-    <version>0.0.1-SNAPSHOT</version>
++    <version>7.1.0-SNAPSHOT</version>
+     <packaging>pom</packaging>
+ 
+     <name>Activiti Examples :: Parent</name>
+     <description>Activiti Examples :: Parent</description>
+ 
++    <properties>
++        <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
++    </properties>
++
+     <modules>
+         <module>activiti-api-basic-full-example-bean</module>
+         <module>activiti-api-basic-full-example-nobean</module>

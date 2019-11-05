@@ -2,18 +2,7 @@
 
 SCRIPT_DIR="$(cd "$( dirname "$0" )" && pwd)"
 
-added_parent=" <parent> 
-    <groupId>org.activiti<\/groupId> 
-    <artifactId>activiti-mono-aggregator<\/artifactId>
-    <version>7.1.0-SNAPSHOT<\/version>
-    <relativePath>..\/<\/relativePath>
-  <\/parent>"
-
-original_relative="\<relativePath\/>"
-
-updated_relative="\<relativePath>..\/activiti-build<\/relativePath>"
-
-monorepo_dir=$SCRIPT_DIR/../activiti-monorepo-dest-poc5
+monorepo_dir=$SCRIPT_DIR/../activiti-monorepo-dest-poc7
 git_base_url="git@github.com:Activiti"
 git_branch="develop"
 shopt -s extglob
@@ -62,8 +51,6 @@ do
             git rm -rf $file
         fi        
     done    
-    echo "fix relative path of parent"
-    sed "s/$original_relative/$updated_relative/g" $repo/pom.xml
 
     git commit -m "Moving $repo into its own subdirectory"
    
@@ -81,9 +68,6 @@ cp $SCRIPT_DIR/pom.xml $monorepo_dir
 echo "fix CRLF on poms"
 find . -name pom.xml -exec dos2unix {} \;
 
-#echo "set all dependencies to SNANPSHOT"
-#sed "/<modelVersion>4.0.0<\/modelVersion>/i $added_parent" $monorepo_dir/activiti-build/pom.xml
-# sed "4 a \ $added_parent" $monorepo_dir/activiti-build/pom.xml
 echo "fix child versions"
 mvn versions:update-child-modules -DallowSnapshots=true
 mvn versions:commit
@@ -94,15 +78,17 @@ echo "update pom properties"
 mvn versions:update-properties 
 git commit -m "update pom properties" .
 
-#echo "apply patch to fix poms"
-#git apply -v $SCRIPT_DIR/fix-pom.patch
-
 echo "copying travis build file"
 cp $SCRIPT_DIR/.gitignore $monorepo_dir
 cp $SCRIPT_DIR/.travis.yml $monorepo_dir
 
 git add .
 git commit -m "add travis config" .
+
+echo "apply patch to fix poms"
+git apply -v $SCRIPT_DIR/fix-pom.patch
+
+git commit -m "fix pom version with patch" .
 
 cd $SCRIPT_DIR
 
