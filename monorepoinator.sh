@@ -79,7 +79,7 @@ mvn versions:update-properties
 git commit -m "update pom properties" .
 
 echo "copying configuration files"
-cp -ra $SCRIPT_DIR/conf-files/* $monorepo_dir/
+cp -a $SCRIPT_DIR/conf-files/.* $monorepo_dir/
 
 git add .
 git commit -m "configuration files" .
