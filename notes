@@ -1,14 +1,10 @@
-parente on acriviti-build
+parent on acriviti-build
   <parent>
     <groupId>org.activiti</groupId>
     <version>7.1.0-SNAPSHOT</version>
     <artifactId>activiti-mono-aggregator</artifactId>
     <relativePath>../</relativePath>
   </parent>
-
-
-relative path on othe module for parent (acriviti-build)
-
 
 in examples:
 
@@ -35,6 +31,7 @@ with
     <relativePath>../</relativePath>
   </parent>
 
+relative path on other modules for parent (acriviti-build)
 
 from; <relativePath/>
 

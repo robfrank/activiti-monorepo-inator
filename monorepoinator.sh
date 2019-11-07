@@ -78,17 +78,16 @@ echo "update pom properties"
 mvn versions:update-properties 
 git commit -m "update pom properties" .
 
-echo "copying travis build file"
-cp $SCRIPT_DIR/.gitignore $monorepo_dir
-cp $SCRIPT_DIR/.travis.yml $monorepo_dir
+echo "copying configuration files"
+cp -ra $SCRIPT_DIR/conf-files/* $monorepo_dir/
 
 git add .
-git commit -m "add travis config" .
+git commit -m "configuration files" .
 
 echo "apply patch to fix poms"
 git apply -v $SCRIPT_DIR/fix-pom.patch
 
-git commit -m "fix pom version with patch" .
+git commit -m "fix pom versions with patch" .
 
 cd $SCRIPT_DIR
 
