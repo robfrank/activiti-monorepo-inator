@@ -58,7 +58,7 @@ do
 
 done
 
-echo "Renaming Activiti to activiti"
+echo "Renaming Activiti to activiti-core"
 git mv Activiti activiti-core
 git commit -m "renaming Activiti to activiti-core"
 
@@ -73,21 +73,19 @@ mvn versions:update-child-modules -DallowSnapshots=true
 mvn versions:commit
 git commit -m "fix child versions" .
 
-# mvn versions:update-properties -DexcludeReactor=false -Dincludes="org.activiti, org.activiti.*" -DallowSnapshots=true -DprocessParent=true
 echo "update pom properties"
 mvn versions:update-properties 
 git commit -m "update pom properties" .
 
-echo "copying configuration files"
-cp -a $SCRIPT_DIR/conf-files/.* $monorepo_dir/
-
-git add .
-git commit -m "configuration files" .
-
 echo "apply patch to fix poms"
 git apply -v $SCRIPT_DIR/fix-pom.patch
-
 git commit -m "fix pom versions with patch" .
+
+echo "copying configuration files"
+cp -a $SCRIPT_DIR/conf-files/.* $monorepo_dir/
+cp -a $SCRIPT_DIR/conf-files/* $monorepo_dir/
+git add .
+git commit -m "configuration files" .
 
 cd $SCRIPT_DIR
 
