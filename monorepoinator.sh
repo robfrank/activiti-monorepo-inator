@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$(cd "$( dirname "$0" )" && pwd)"
+script_dir="$(cd "$( dirname "$0" )" && pwd)"
 
-monorepo_dir=$SCRIPT_DIR/../activiti-monorepo-dest
+monorepo_dir=$script_dir/../activiti-monorepo-dest-10
 git_base_url="git@github.com:Activiti"
 git_branch="develop"
 shopt -s extglob
@@ -15,8 +15,8 @@ repositories="activiti-build|Activiti|activiti-api|activiti-dependencies|activit
 
 files_to_delete=".dependabot,.dockerignore,.editorconfig,.helmignore,.mergify.yml,.travis.yml,.updatebot.yml,.gitignore,.codecov.yml"
 
+echo "workdir is:: $monorepo_dir"
 echo "prepare mono repo"
-
 mkdir -p $monorepo_dir
 cd $monorepo_dir
 
@@ -26,7 +26,7 @@ git add deleteme.txt
 git commit -m "initial commit" .
 git rm deleteme.txt
 git commit -m "cleanup initial file"
-git checkout -b develop
+git checkout -b $git_branch
     
 echo "start merging: $repositories"
 
@@ -63,10 +63,14 @@ git mv Activiti activiti-core
 git commit -m "renaming Activiti to activiti-core"
 
 echo "copying new parent pom"
-cp $SCRIPT_DIR/pom.xml $monorepo_dir
+cp $script_dir/pom.xml $monorepo_dir
+git add pom.xml
+git commit -m "add parent pom" ./pom.xml
+
 
 echo "fix CRLF on poms"
 find . -name pom.xml -exec dos2unix {} \;
+git commit -m "fix CRLF on poms" .
 
 echo "fix child versions"
 mvn versions:update-child-modules -DallowSnapshots=true
@@ -78,14 +82,17 @@ mvn versions:update-properties
 git commit -m "update pom properties" .
 
 echo "apply patch to fix poms"
-git apply -v $SCRIPT_DIR/fix-pom.patch
+git apply -v $script_dir/fix-pom.patch
 git commit -m "fix pom versions with patch" .
 
-echo "copying configuration files"
-cp -a $SCRIPT_DIR/conf-files/.* $monorepo_dir/
-cp -a $SCRIPT_DIR/conf-files/* $monorepo_dir/
+echo "copying build configuration files"
+cp -a $script_dir/conf-files/.github $monorepo_dir/
+cp -a $script_dir/conf-files/.*.yml $monorepo_dir/
+cp -a $script_dir/conf-files/Jenkinsfile $monorepo_dir/
+cp -a $script_dir/conf-files/Makefile $monorepo_dir/
 git add .
-git commit -m "configuration files" .
+git commit -m "build configuration files" .
 
-cd $SCRIPT_DIR
+echo "workdir is:: $script_dir"
+cd $script_dir
 
