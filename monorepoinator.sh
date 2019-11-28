@@ -2,9 +2,11 @@
 
 script_dir="$(cd "$( dirname "$0" )" && pwd)"
 
-monorepo_dir=$script_dir/../activiti-monorepo-dest-10
+monorepo_dir=$script_dir/../activiti-monorepo-dest-M6
 git_base_url="git@github.com:Activiti"
 git_branch="develop"
+git_dest_branch="develop-mono"
+
 shopt -s extglob
 
 # all module, cloud included
@@ -26,9 +28,9 @@ git add deleteme.txt
 git commit -m "initial commit" .
 git rm deleteme.txt
 git commit -m "cleanup initial file"
-git checkout -b $git_branch
+git checkout -b $git_dest_branch
     
-echo "start merging: $repositories"
+echo "start merging on branch $git_dest_branch >: $repositories"
 
 for repo in ${repositories//|/ }
 do
@@ -53,7 +55,9 @@ do
     done    
 
     git commit -m "Moving $repo into its own subdirectory"
-   
+
+    git remote rm $repo
+
     echo "done $repo"
 
 done
@@ -79,6 +83,7 @@ git commit -m "fix child versions" .
 
 echo "update pom properties"
 mvn versions:update-properties 
+mvn versions:commit
 git commit -m "update pom properties" .
 
 echo "apply patch to fix poms"
