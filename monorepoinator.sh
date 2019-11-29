@@ -65,12 +65,19 @@ done
 echo "Renaming Activiti to activiti-core"
 git mv Activiti activiti-core
 git commit -m "renaming Activiti to activiti-core"
+echo "move files back form core to project root dir"
+git mv activiti-core/CODE_OF_CONDUCT.md  ./
+git mv activiti-core/README.md  ./
+git mv activiti-core/CONTRIBUTING.md	 ./
+git mv activiti-core/checkstyle-rules.xml	 ./
+git mv activiti-core/LICENSE.txt	 ./
+git mv activiti-core/activiti7.png	 ./
+git commit -m "move files back form core to project root dir"
 
 echo "copying new parent pom"
 cp $script_dir/pom.xml $monorepo_dir
 git add pom.xml
 git commit -m "add parent pom" ./pom.xml
-
 
 echo "fix CRLF on poms"
 find . -name pom.xml -exec dos2unix {} \;
@@ -96,7 +103,7 @@ cp -a $script_dir/conf-files/.*.yml $monorepo_dir/
 cp -a $script_dir/conf-files/Jenkinsfile $monorepo_dir/
 cp -a $script_dir/conf-files/Makefile $monorepo_dir/
 git add .
-git commit -m "build configuration files" .
+git commit -m "add build configuration files" .
 
 echo "workdir is:: $script_dir"
 cd $script_dir
