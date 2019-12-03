@@ -2,7 +2,7 @@
 
 script_dir="$(cd "$( dirname "$0" )" && pwd)"
 
-monorepo_dir=$script_dir/../activiti-monorepo-dest-M6
+monorepo_dir=$script_dir/../activiti-monorepo-dest
 git_base_url="git@github.com:Activiti"
 git_branch="develop"
 git_dest_branch="develop-mono"
