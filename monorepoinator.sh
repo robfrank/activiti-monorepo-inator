@@ -2,7 +2,7 @@
 
 script_dir="$(cd "$( dirname "$0" )" && pwd)"
 
-monorepo_dir=$script_dir/../activiti-monorepo-dest
+monorepo_dir=$script_dir/../activiti-monorepo-dest-2
 git_base_url="git@github.com:Activiti"
 git_branch="develop"
 git_dest_branch="develop-mono"
@@ -93,8 +93,12 @@ mvn versions:update-properties
 mvn versions:commit
 git commit -m "update pom properties" .
 
-echo "apply patch to fix poms"
-git apply -v $script_dir/fix-pom.patch
+#echo "apply patch to fix poms"
+#git apply -v $script_dir/fix-pom.patch
+#git commit -m "fix pom versions with patch" .
+
+echo "apply second patch to fix poms"
+git apply -v $script_dir/fix-pom-new.patch
 git commit -m "fix pom versions with patch" .
 
 echo "copying build configuration files"

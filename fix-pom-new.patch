@@ -17,9 +17,9 @@ index 488d1ef6b..8b1949909 100644
      <activiti-api.version>${project.version}</activiti-api.version>
 -    <activiti-build.version>7.1.0-SNAPSHOT</activiti-build.version>
 +    <activiti-build.version>${project.version}</activiti-build.version>
-
+ 
    </properties>
-
+ 
 diff --git a/activiti-build/activiti-dependencies-parent/pom.xml b/activiti-build/activiti-dependencies-parent/pom.xml
 index 4f188fd26..2c22c03ca 100644
 --- a/activiti-build/activiti-dependencies-parent/pom.xml
@@ -112,38 +112,38 @@ index b161ac948..cf0cbda3a 100755
 -    <relativePath/>
 +    <relativePath>../activiti-build</relativePath>
    </parent>
-
+   
    <groupId>org.activiti.dependencies</groupId>
 @@ -20,10 +20,10 @@
    <inceptionYear>2018</inceptionYear>
-
+ 
    <properties>
 -    <activiti-build.version>7.1.0-SNAPSHOT</activiti-build.version>
 -    <activiti-api.version>7.1.0-SNAPSHOT</activiti-api.version>
--    <activiti-core-common.version>7.1.0-SNAPSHOT</activiti-core-common.version>
+-    <activiti-core-common.version>7.1.0-SNAPSHOT</activiti-core-common.version> 
 -    <activiti.version>7.1.0-SNAPSHOT</activiti.version>
 +    <activiti-build.version>${project.version}</activiti-build.version>
 +    <activiti-api.version>${project.version}</activiti-api.version>
 +    <activiti-core-common.version>${project.version}</activiti-core-common.version>
 +    <activiti.version>${project.version}</activiti.version>
    </properties>
-
+ 
    <organization>
 diff --git a/activiti-examples/activiti-api-basic-connector-example/pom.xml b/activiti-examples/activiti-api-basic-connector-example/pom.xml
 index d9a571c63..1640e38e6 100644
 --- a/activiti-examples/activiti-api-basic-connector-example/pom.xml
 +++ b/activiti-examples/activiti-api-basic-connector-example/pom.xml
 @@ -5,17 +5,17 @@
-
+ 
    <groupId>org.activiti.examples</groupId>
    <artifactId>activiti-api-basic-connector-examples</artifactId>
 -  <version>0.0.1-SNAPSHOT</version>
 +  <version>7.1.0-SNAPSHOT</version>
    <packaging>jar</packaging>
-
+ 
    <name>Activiti API Basic Connector Examples</name>
    <description>Activiti API Basic Connector Examples</description>
-
+ 
    <parent>
 -    <groupId>org.springframework.boot</groupId>
 -    <artifactId>spring-boot-starter-parent</artifactId>
@@ -154,7 +154,7 @@ index d9a571c63..1640e38e6 100644
 +    <version>7.1.0-SNAPSHOT</version>
 +    <relativePath>../</relativePath>
    </parent>
-
+ 
    <properties>
 @@ -24,7 +24,7 @@
      <java.version>11</java.version>
@@ -170,16 +170,16 @@ index b27b094aa..85a297281 100644
 --- a/activiti-examples/activiti-api-basic-full-example-bean/pom.xml
 +++ b/activiti-examples/activiti-api-basic-full-example-bean/pom.xml
 @@ -5,17 +5,17 @@
-
+ 
    <groupId>org.activiti.examples</groupId>
    <artifactId>activiti-api-basic-full-example</artifactId>
 -  <version>0.0.1-SNAPSHOT</version>
 +  <version>7.1.0-SNAPSHOT</version>
    <packaging>jar</packaging>
-
+ 
    <name>Activiti API Basic Process and Tasks Examples</name>
    <description>Activiti API Basic Process and Tasks Examples</description>
-
+ 
    <parent>
 -    <groupId>org.springframework.boot</groupId>
 -    <artifactId>spring-boot-starter-parent</artifactId>
@@ -190,7 +190,7 @@ index b27b094aa..85a297281 100644
 +    <version>7.1.0-SNAPSHOT</version>
 +    <relativePath>../</relativePath>
    </parent>
-
+ 
    <properties>
 @@ -24,7 +24,7 @@
      <java.version>11</java.version>
@@ -206,16 +206,16 @@ index 9d600b9cb..e8d3ce677 100644
 --- a/activiti-examples/activiti-api-basic-full-example-nobean/pom.xml
 +++ b/activiti-examples/activiti-api-basic-full-example-nobean/pom.xml
 @@ -5,17 +5,17 @@
-
+ 
    <groupId>org.activiti.examples</groupId>
    <artifactId>activiti-api-basic-full-example-custombean</artifactId>
 -  <version>0.0.1-SNAPSHOT</version>
 +  <version>7.1.0-SNAPSHOT</version>
    <packaging>jar</packaging>
-
+ 
    <name>Activiti API Basic Process and Tasks Examples</name>
    <description>Activiti API Basic Process and Tasks Examples</description>
-
+ 
    <parent>
 -    <groupId>org.springframework.boot</groupId>
 -    <artifactId>spring-boot-starter-parent</artifactId>
@@ -226,7 +226,7 @@ index 9d600b9cb..e8d3ce677 100644
 +    <version>7.1.0-SNAPSHOT</version>
 +    <relativePath>../</relativePath>
    </parent>
-
+ 
    <properties>
 @@ -24,7 +24,7 @@
      <java.version>11</java.version>
@@ -242,16 +242,16 @@ index db2b0bc4e..2fdd956db 100644
 --- a/activiti-examples/activiti-api-basic-process-example/pom.xml
 +++ b/activiti-examples/activiti-api-basic-process-example/pom.xml
 @@ -5,17 +5,17 @@
-
+ 
    <groupId>org.activiti.examples</groupId>
    <artifactId>activiti-api-basic-process-examples</artifactId>
 -  <version>0.0.1-SNAPSHOT</version>
 +  <version>7.1.0-SNAPSHOT</version>
    <packaging>jar</packaging>
-
+ 
    <name>Activiti API Basic Process Examples</name>
    <description>Activiti API Basic Process Examples</description>
-
+ 
    <parent>
 -    <groupId>org.springframework.boot</groupId>
 -    <artifactId>spring-boot-starter-parent</artifactId>
@@ -262,7 +262,7 @@ index db2b0bc4e..2fdd956db 100644
 +    <version>7.1.0-SNAPSHOT</version>
 +    <relativePath>../</relativePath>
    </parent>
-
+ 
    <properties>
 @@ -24,7 +24,7 @@
      <java.version>11</java.version>
@@ -278,16 +278,16 @@ index fee6bf2d7..229f1420c 100644
 --- a/activiti-examples/activiti-api-basic-task-example/pom.xml
 +++ b/activiti-examples/activiti-api-basic-task-example/pom.xml
 @@ -5,17 +5,17 @@
-
+ 
    <groupId>org.activiti.examples</groupId>
    <artifactId>activiti-api-basic-task-examples</artifactId>
 -  <version>0.0.1-SNAPSHOT</version>
 +  <version>7.1.0-SNAPSHOT</version>
    <packaging>jar</packaging>
-
+ 
    <name>Activiti API Basic Task Examples</name>
    <description>Activiti API Basic Task Examples</description>
-
+ 
    <parent>
 -    <groupId>org.springframework.boot</groupId>
 -    <artifactId>spring-boot-starter-parent</artifactId>
@@ -298,7 +298,7 @@ index fee6bf2d7..229f1420c 100644
 +    <version>7.1.0-SNAPSHOT</version>
 +    <relativePath>../</relativePath>
    </parent>
-
+ 
    <properties>
 @@ -24,7 +24,7 @@
      <java.version>11</java.version>
@@ -314,16 +314,16 @@ index 989e3d644..f23147be1 100644
 --- a/activiti-examples/activiti-api-spring-integration-example/pom.xml
 +++ b/activiti-examples/activiti-api-spring-integration-example/pom.xml
 @@ -5,17 +5,17 @@
-
+ 
    <groupId>org.activiti.examples</groupId>
    <artifactId>activiti-api-spring-integration-example</artifactId>
 -  <version>0.0.1-SNAPSHOT</version>
 +  <version>7.1.0-SNAPSHOT</version>
    <packaging>jar</packaging>
-
+ 
    <name>Activiti API Spring Integration Examples</name>
    <description>Activiti API Spring Integration Examples</description>
-
+ 
    <parent>
 -    <groupId>org.springframework.boot</groupId>
 -    <artifactId>spring-boot-starter-parent</artifactId>
@@ -334,7 +334,7 @@ index 989e3d644..f23147be1 100644
 +    <version>7.1.0-SNAPSHOT</version>
 +    <relativePath>../</relativePath>
    </parent>
-
+ 
    <properties>
 @@ -24,7 +24,7 @@
      <java.version>11</java.version>
@@ -350,16 +350,16 @@ index ab2d93601..fe3864338 100644
 --- a/activiti-examples/activiti-api-web-example/pom.xml
 +++ b/activiti-examples/activiti-api-web-example/pom.xml
 @@ -21,17 +21,17 @@
-
+ 
    <groupId>org.activiti</groupId>
    <artifactId>activiti-api-web-examples</artifactId>
 -  <version>0.0.1-SNAPSHOT</version>
 +  <version>7.1.0-SNAPSHOT</version>
    <packaging>jar</packaging>
-
+ 
    <name>Activiti API Web Examples</name>
    <description>Activiti API Web Examples</description>
-
+ 
    <parent>
 -    <groupId>org.springframework.boot</groupId>
 -    <artifactId>spring-boot-starter-parent</artifactId>
@@ -370,7 +370,7 @@ index ab2d93601..fe3864338 100644
 +    <version>7.1.0-SNAPSHOT</version>
 +    <relativePath>../</relativePath>
    </parent>
-
+ 
    <properties>
 @@ -40,7 +40,7 @@
     <java.version>11</java.version>
