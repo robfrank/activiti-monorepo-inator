@@ -1,37 +1,19 @@
 github:
   organisations:
-  - name: activiti
-    repositories:
-    - name: activiti-cloud-service-common
-      branch: develop
-      useSinglePullRequest: true
-    - name: activiti-cloud-connectors
-      branch: develop
-      useSinglePullRequest: true
-    - name: activiti-cloud-query-service
-      branch: develop
-      useSinglePullRequest: true
-    - name: activiti-cloud-modeling-service
-      branch: develop
-      useSinglePullRequest: true
-    - name: activiti-cloud-messages-service
-      branch: develop
-      useSinglePullRequest: true
-    - name: activiti-cloud-runtime-bundle-service
-      branch: develop
-      useSinglePullRequest: true
-    - name: activiti-cloud-audit-service
-      branch: develop
-      useSinglePullRequest: true
-    - name: activiti-cloud-api
-      branch: develop
-      useSinglePullRequest: true
-    - name: activiti-cloud-notifications-service-graphql
-      branch: develop
-      useSinglePullRequest: true
-    - name: activiti-cloud-dependencies
-      branch: develop
-      useSinglePullRequest: true
-    - name: activiti-cloud-acceptance-tests
-      branch: develop
-      useSinglePullRequest: true
+    - name: activiti
+      repositories:
+        - name: activiti-cloud-full-chart
+          branch: master
+          useSinglePullRequest: true
+    - name: alfresco
+      repositories:
+        - name: alfresco-process-parent
+          useSinglePullRequest: true
+        - name: alfresco-process-application-oracle-kafka
+          useSinglePullRequest: true
+        - name: alfresco-process-application-deployment
+          useSinglePullRequest: true
+        - name: alfresco-process-springboot-service-deployment
+          useSinglePullRequest: true
+        - name: alfresco-adf-app-deployment
+          useSinglePullRequest: true
