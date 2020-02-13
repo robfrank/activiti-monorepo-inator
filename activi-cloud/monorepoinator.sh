@@ -2,18 +2,14 @@
 
 script_dir="$(cd "$( dirname "$0" )" && pwd)"
 
-monorepo_dir=$script_dir/../activiti-monorepo-dest-2
+monorepo_dir=$script_dir/../../activiti-cloud-monorepo-dest-6
 git_base_url="git@github.com:Activiti"
 git_branch="develop"
 git_dest_branch="develop-mono"
 
 shopt -s extglob
 
-# all module, cloud included
-# repositories="activiti-build|Activiti|activiti-api|activiti-dependencies|activiti-core-common|activiti-cloud-api|activiti-cloud-app-service|activiti-cloud-audit|activiti-cloud-audit-service|activiti-cloud-build|activiti-cloud-connectors|activiti-cloud-dependencies|activiti-cloud-examples|activiti-cloud-gateway|activiti-cloud-modeling-build|activiti-cloud-modeling-dependencies|activiti-cloud-org-service|activiti-cloud-query-service|activiti-cloud-runtime-bundle-service|activiti-cloud-service-common"
-
-# only build, core, commons
-repositories="activiti-build|Activiti|activiti-api|activiti-dependencies|activiti-core-common|activiti-examples"
+repositories="activiti-cloud-build|activiti-cloud-api|activiti-cloud-service-common|activiti-cloud-runtime-bundle-service|activiti-cloud-messages-service|activiti-cloud-query-service|activiti-cloud-audit-service|activiti-cloud-modeling-service|activiti-cloud-notifications-graphql-service|activiti-cloud-acceptance-tests"
 
 files_to_delete=".dependabot,.dockerignore,.editorconfig,.helmignore,.mergify.yml,.travis.yml,.updatebot.yml,.gitignore,.codecov.yml"
 
@@ -37,11 +33,8 @@ do
     echo "start working on $repo"
 
     git remote add -f $repo $git_base_url/$repo.git
-    if [ $repo == "activiti-examples" ] ; then 
-        git merge --no-edit --allow-unrelated-histories  $repo/master
-    else 
-        git merge --no-edit --allow-unrelated-histories  $repo/$git_branch
-    fi
+    git merge --no-edit --allow-unrelated-histories $repo/$git_branch
+
     mkdir $repo
 
     git mv ./!($repositories) ./$repo
@@ -62,44 +55,37 @@ do
 
 done
 
-echo "Renaming Activiti to activiti-core"
-git mv Activiti activiti-core
-git commit -m "renaming Activiti to activiti-core"
-echo "move files back form core to project root dir"
-git mv activiti-core/CODE_OF_CONDUCT.md  ./
-git mv activiti-core/README.md  ./
-git mv activiti-core/CONTRIBUTING.md	 ./
-git mv activiti-core/checkstyle-rules.xml	 ./
-git mv activiti-core/LICENSE.txt	 ./
-git mv activiti-core/activiti7.png	 ./
-git commit -m "move files back form core to project root dir"
-
 echo "copying new parent pom"
 cp $script_dir/pom.xml $monorepo_dir
 git add pom.xml
 git commit -m "add parent pom" ./pom.xml
+echo "---> copying new parent pom"
 
 echo "fix CRLF on poms"
 find . -name pom.xml -exec dos2unix {} \;
 git commit -m "fix CRLF on poms" .
+echo "---> fix CRLF on poms"
 
 echo "fix child versions"
 mvn versions:update-child-modules -DallowSnapshots=true
 mvn versions:commit
 git commit -m "fix child versions" .
+echo "---> fix child versions"
 
 echo "update pom properties"
-mvn versions:update-properties 
+mvn versions:update-properties
 mvn versions:commit
 git commit -m "update pom properties" .
+echo "---> update pom properties"
 
-#echo "apply patch to fix poms"
-#git apply -v $script_dir/fix-pom.patch
-#git commit -m "fix pom versions with patch" .
-
-echo "apply second patch to fix poms"
-git apply -v $script_dir/fix-pom-new.patch
+echo "apply patch to fix poms: "
+git apply -v $script_dir/disable-enforcer.patch
 git commit -m "fix pom versions with patch" .
+
+echo "apply patch to fix poms: revert versions"
+git apply -v $script_dir/revert-versions.patch
+git commit -m "fix pom versions with patch" .
+
 
 echo "copying build configuration files"
 cp -a $script_dir/conf-files/.github $monorepo_dir/

@@ -1,0 +1,502 @@
+diff --git a/activiti-cloud-acceptance-tests/dependencies-tests/pom.xml b/activiti-cloud-acceptance-tests/dependencies-tests/pom.xml
+index 14504d3d..1604c725 100644
+--- a/activiti-cloud-acceptance-tests/dependencies-tests/pom.xml
++++ b/activiti-cloud-acceptance-tests/dependencies-tests/pom.xml
+@@ -18,23 +18,23 @@
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-enforcer-plugin</artifactId>
+-        <executions>
+-          <execution>
+-            <id>enforce-dependency-convergence</id>
+-            <goals>
+-              <goal>enforce</goal>
+-            </goals>
+-            <configuration>
+-              <rules>
+-                <reactorModuleConvergence>
+-                  <message>The reactor is not valid</message>
+-                  <ignoreModuleDependencies>false</ignoreModuleDependencies>
+-                </reactorModuleConvergence>
+-                <dependencyConvergence/>
+-              </rules>
+-            </configuration>
+-          </execution>
+-        </executions>
++<!--        <executions>-->
++<!--          <execution>-->
++<!--            <id>enforce-dependency-convergence</id>-->
++<!--            <goals>-->
++<!--              <goal>enforce</goal>-->
++<!--            </goals>-->
++<!--            <configuration>-->
++<!--              <rules>-->
++<!--                <reactorModuleConvergence>-->
++<!--                  <message>The reactor is not valid</message>-->
++<!--                  <ignoreModuleDependencies>false</ignoreModuleDependencies>-->
++<!--                </reactorModuleConvergence>-->
++<!--                <dependencyConvergence/>-->
++<!--              </rules>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--        </executions>-->
+       </plugin>
+     </plugins>
+   </build>
+diff --git a/activiti-cloud-api/dependencies-tests/pom.xml b/activiti-cloud-api/dependencies-tests/pom.xml
+index b771d3b0..36abcbdf 100644
+--- a/activiti-cloud-api/dependencies-tests/pom.xml
++++ b/activiti-cloud-api/dependencies-tests/pom.xml
+@@ -20,21 +20,21 @@
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-enforcer-plugin</artifactId>
+         <executions>
+-          <execution>
+-            <id>enforce-dependency-convergence</id>
+-            <goals>
+-              <goal>enforce</goal>
+-            </goals>
+-            <configuration>
+-              <rules>
+-                <reactorModuleConvergence>
+-                  <message>The reactor is not valid</message>
+-                  <ignoreModuleDependencies>false</ignoreModuleDependencies>
+-                </reactorModuleConvergence>
+-                <dependencyConvergence/>
+-              </rules>
+-            </configuration>
+-          </execution>
++<!--          <execution>-->
++<!--            <id>enforce-dependency-convergence</id>-->
++<!--            <goals>-->
++<!--              <goal>enforce</goal>-->
++<!--            </goals>-->
++<!--            <configuration>-->
++<!--              <rules>-->
++<!--                <reactorModuleConvergence>-->
++<!--                  <message>The reactor is not valid</message>-->
++<!--                  <ignoreModuleDependencies>false</ignoreModuleDependencies>-->
++<!--                </reactorModuleConvergence>-->
++<!--                <dependencyConvergence/>-->
++<!--              </rules>-->
++<!--            </configuration>-->
++<!--          </execution>-->
+         </executions>
+       </plugin>
+     </plugins>
+diff --git a/activiti-cloud-audit-service/dependencies-tests/pom.xml b/activiti-cloud-audit-service/dependencies-tests/pom.xml
+index c24e87af..976e2ed2 100644
+--- a/activiti-cloud-audit-service/dependencies-tests/pom.xml
++++ b/activiti-cloud-audit-service/dependencies-tests/pom.xml
+@@ -21,33 +21,33 @@
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-enforcer-plugin</artifactId>
+         <version>3.0.0-M2</version>
+-        <executions>
+-          <execution>
+-            <id>enforce-dependency-convergence</id>
+-            <goals>
+-              <goal>enforce</goal>
+-            </goals>
+-            <configuration>
+-              <fail>${enforceFail}</fail>
+-              <rules>
+-                <reactorModuleConvergence>
+-                  <message>The reactor is not valid</message>
+-                  <ignoreModuleDependencies>false</ignoreModuleDependencies>
+-                </reactorModuleConvergence>              
+-                <dependencyConvergence/>
+-              </rules>
+-            </configuration>
+-          </execution>
+-          <execution>
+-            <!-- disable parent execution which fails here -->
+-            <id>enforce-plugin-versions</id>
+-            <configuration>
+-              <fail>false</fail>
+-            </configuration>
+-          </execution>
+-        </executions>
++<!--        <executions>-->
++<!--          <execution>-->
++<!--            <id>enforce-dependency-convergence</id>-->
++<!--            <goals>-->
++<!--              <goal>enforce</goal>-->
++<!--            </goals>-->
++<!--            <configuration>-->
++<!--              <fail>${enforceFail}</fail>-->
++<!--              <rules>-->
++<!--                <reactorModuleConvergence>-->
++<!--                  <message>The reactor is not valid</message>-->
++<!--                  <ignoreModuleDependencies>false</ignoreModuleDependencies>-->
++<!--                </reactorModuleConvergence>              -->
++<!--                <dependencyConvergence/>-->
++<!--              </rules>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--          <execution>-->
++<!--            &lt;!&ndash; disable parent execution which fails here &ndash;&gt;-->
++<!--            <id>enforce-plugin-versions</id>-->
++<!--            <configuration>-->
++<!--              <fail>false</fail>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--        </executions>-->
+       </plugin>
+     </plugins>
+   </build>
+   
+-</project>
+\ No newline at end of file
++</project>
+diff --git a/activiti-cloud-messages-service/dependencies-tests/pom.xml b/activiti-cloud-messages-service/dependencies-tests/pom.xml
+index f3038800..829c5d6c 100644
+--- a/activiti-cloud-messages-service/dependencies-tests/pom.xml
++++ b/activiti-cloud-messages-service/dependencies-tests/pom.xml
+@@ -19,24 +19,24 @@
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-enforcer-plugin</artifactId>
+-        <executions>
+-          <execution>
+-            <id>enforce-dependency-convergence</id>
+-            <goals>
+-              <goal>enforce</goal>
+-            </goals>
+-            <configuration>
+-              <fail>${enforceFail}</fail>
+-              <rules>
+-                <reactorModuleConvergence>
+-                  <message>The reactor is not valid</message>
+-                  <ignoreModuleDependencies>false</ignoreModuleDependencies>
+-                </reactorModuleConvergence>
+-                <dependencyConvergence/>
+-              </rules>
+-            </configuration>
+-          </execution>
+-        </executions>
++<!--        <executions>-->
++<!--          <execution>-->
++<!--            <id>enforce-dependency-convergence</id>-->
++<!--            <goals>-->
++<!--              <goal>enforce</goal>-->
++<!--            </goals>-->
++<!--            <configuration>-->
++<!--              <fail>${enforceFail}</fail>-->
++<!--              <rules>-->
++<!--                <reactorModuleConvergence>-->
++<!--                  <message>The reactor is not valid</message>-->
++<!--                  <ignoreModuleDependencies>false</ignoreModuleDependencies>-->
++<!--                </reactorModuleConvergence>-->
++<!--                <dependencyConvergence/>-->
++<!--              </rules>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--        </executions>-->
+       </plugin>
+     </plugins>
+   </build>
+diff --git a/activiti-cloud-modeling-service/dependencies-tests/pom.xml b/activiti-cloud-modeling-service/dependencies-tests/pom.xml
+index a232c687..4660cccb 100644
+--- a/activiti-cloud-modeling-service/dependencies-tests/pom.xml
++++ b/activiti-cloud-modeling-service/dependencies-tests/pom.xml
+@@ -22,31 +22,31 @@
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-enforcer-plugin</artifactId>
+-        <executions>
+-          <execution>
+-            <id>enforce-dependency-convergence</id>
+-            <goals>
+-              <goal>enforce</goal>
+-            </goals>
+-            <configuration>
+-              <fail>${enforceFail}</fail>
+-              <rules>
+-                <reactorModuleConvergence>
+-                  <message>The reactor is not valid</message>
+-                  <ignoreModuleDependencies>false</ignoreModuleDependencies>
+-                </reactorModuleConvergence>
+-                <dependencyConvergence/>
+-              </rules>
+-            </configuration>
+-          </execution>
+-          <execution>
+-            <!-- disable parent execution which fails here -->
+-            <id>enforce-plugin-versions</id>
+-            <configuration>
+-              <fail>false</fail>
+-            </configuration>
+-          </execution>
+-        </executions>
++<!--        <executions>-->
++<!--          <execution>-->
++<!--            <id>enforce-dependency-convergence</id>-->
++<!--            <goals>-->
++<!--              <goal>enforce</goal>-->
++<!--            </goals>-->
++<!--            <configuration>-->
++<!--              <fail>${enforceFail}</fail>-->
++<!--              <rules>-->
++<!--                <reactorModuleConvergence>-->
++<!--                  <message>The reactor is not valid</message>-->
++<!--                  <ignoreModuleDependencies>false</ignoreModuleDependencies>-->
++<!--                </reactorModuleConvergence>-->
++<!--                <dependencyConvergence/>-->
++<!--              </rules>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--          <execution>-->
++<!--            &lt;!&ndash; disable parent execution which fails here &ndash;&gt;-->
++<!--            <id>enforce-plugin-versions</id>-->
++<!--            <configuration>-->
++<!--              <fail>false</fail>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--        </executions>-->
+       </plugin>
+     </plugins>
+   </build>
+diff --git a/activiti-cloud-notifications-graphql-service/dependencies-tests/pom.xml b/activiti-cloud-notifications-graphql-service/dependencies-tests/pom.xml
+index 152a9c20..fe0d386c 100644
+--- a/activiti-cloud-notifications-graphql-service/dependencies-tests/pom.xml
++++ b/activiti-cloud-notifications-graphql-service/dependencies-tests/pom.xml
+@@ -22,34 +22,34 @@
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-enforcer-plugin</artifactId>
+         <version>3.0.0-M2</version>
+-        <executions>
+-          <execution>
+-            <id>enforce-dependency-convergence</id>
+-            <goals>
+-              <goal>enforce</goal>
+-            </goals>
+-            <configuration>
+-              <fail>${enforceFail}</fail>
+-              <rules>
+-                <reactorModuleConvergence>
+-                  <message>The reactor is not valid</message>
+-                  <ignoreModuleDependencies>false</ignoreModuleDependencies>
+-                </reactorModuleConvergence>              
+-                <dependencyConvergence/>
+-              </rules>
+-            </configuration>
+-          </execution>
+-          <execution>
+-            <!-- disable parent execution which fails here -->
+-            <id>enforce-plugin-versions</id>
+-            <configuration>
+-              <fail>false</fail>
+-            </configuration>
+-          </execution>
+-        </executions>
++<!--        <executions>-->
++<!--          <execution>-->
++<!--            <id>enforce-dependency-convergence</id>-->
++<!--            <goals>-->
++<!--              <goal>enforce</goal>-->
++<!--            </goals>-->
++<!--            <configuration>-->
++<!--              <fail>${enforceFail}</fail>-->
++<!--              <rules>-->
++<!--                <reactorModuleConvergence>-->
++<!--                  <message>The reactor is not valid</message>-->
++<!--                  <ignoreModuleDependencies>false</ignoreModuleDependencies>-->
++<!--                </reactorModuleConvergence>              -->
++<!--                <dependencyConvergence/>-->
++<!--              </rules>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--          <execution>-->
++<!--            &lt;!&ndash; disable parent execution which fails here &ndash;&gt;-->
++<!--            <id>enforce-plugin-versions</id>-->
++<!--            <configuration>-->
++<!--              <fail>false</fail>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--        </executions>-->
+       </plugin>
+     </plugins>
+   </build>
+   
+   
+-</project>
+\ No newline at end of file
++</project>
+diff --git a/activiti-cloud-query-service/dependencies-tests/pom.xml b/activiti-cloud-query-service/dependencies-tests/pom.xml
+index aa5c1a7d..833137ca 100644
+--- a/activiti-cloud-query-service/dependencies-tests/pom.xml
++++ b/activiti-cloud-query-service/dependencies-tests/pom.xml
+@@ -20,34 +20,33 @@
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-enforcer-plugin</artifactId>
+-        <version>3.0.0-M2</version>
+-        <executions>
+-          <execution>
+-            <id>enforce-dependency-convergence</id>
+-            <goals>
+-              <goal>enforce</goal>
+-            </goals>
+-            <configuration>
+-              <fail>${enforceFail}</fail>
+-              <rules>
+-                <reactorModuleConvergence>
+-                  <message>The reactor is not valid</message>
+-                  <ignoreModuleDependencies>false</ignoreModuleDependencies>
+-                </reactorModuleConvergence>              
+-                <dependencyConvergence/>
+-              </rules>
+-            </configuration>
+-          </execution>
+-          <execution>
+-            <!-- disable parent execution which fails here -->
+-            <id>enforce-plugin-versions</id>
+-            <configuration>
+-              <fail>false</fail>
+-            </configuration>
+-          </execution>
+-        </executions>
++<!--        <executions>-->
++<!--          <execution>-->
++<!--            <id>enforce-dependency-convergence</id>-->
++<!--            <goals>-->
++<!--              <goal>enforce</goal>-->
++<!--            </goals>-->
++<!--            <configuration>-->
++<!--              <fail>${enforceFail}</fail>-->
++<!--              <rules>-->
++<!--                <reactorModuleConvergence>-->
++<!--                  <message>The reactor is not valid</message>-->
++<!--                  <ignoreModuleDependencies>false</ignoreModuleDependencies>-->
++<!--                </reactorModuleConvergence>              -->
++<!--                <dependencyConvergence/>-->
++<!--              </rules>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--          <execution>-->
++<!--            &lt;!&ndash; disable parent execution which fails here &ndash;&gt;-->
++<!--            <id>enforce-plugin-versions</id>-->
++<!--            <configuration>-->
++<!--              <fail>false</fail>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--        </executions>-->
+       </plugin>
+     </plugins>
+   </build>
+   
+-</project>
+\ No newline at end of file
++</project>
+diff --git a/activiti-cloud-runtime-bundle-service/dependencies-tests/pom.xml b/activiti-cloud-runtime-bundle-service/dependencies-tests/pom.xml
+index 69811b3f..a4cc6bba 100644
+--- a/activiti-cloud-runtime-bundle-service/dependencies-tests/pom.xml
++++ b/activiti-cloud-runtime-bundle-service/dependencies-tests/pom.xml
+@@ -20,34 +20,33 @@
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-enforcer-plugin</artifactId>
+-        <version>3.0.0-M2</version>
+-        <executions>
+-          <execution>
+-            <id>enforce-dependency-convergence</id>
+-            <goals>
+-              <goal>enforce</goal>
+-            </goals>
+-            <configuration>
+-              <fail>${enforceFail}</fail>
+-              <rules>
+-                <reactorModuleConvergence>
+-                  <message>The reactor is not valid</message>
+-                  <ignoreModuleDependencies>false</ignoreModuleDependencies>
+-                </reactorModuleConvergence>              
+-                <dependencyConvergence/>
+-              </rules>
+-            </configuration>
+-          </execution>
+-          <execution>
+-            <!-- disable parent execution which fails here -->
+-            <id>enforce-plugin-versions</id>
+-            <configuration>
+-              <fail>false</fail>
+-            </configuration>
+-          </execution>
+-        </executions>
++<!--        <executions>-->
++<!--          <execution>-->
++<!--            <id>enforce-dependency-convergence</id>-->
++<!--            <goals>-->
++<!--              <goal>enforce</goal>-->
++<!--            </goals>-->
++<!--            <configuration>-->
++<!--              <fail>${enforceFail}</fail>-->
++<!--              <rules>-->
++<!--                <reactorModuleConvergence>-->
++<!--                  <message>The reactor is not valid</message>-->
++<!--                  <ignoreModuleDependencies>false</ignoreModuleDependencies>-->
++<!--                </reactorModuleConvergence>              -->
++<!--                <dependencyConvergence/>-->
++<!--              </rules>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--          <execution>-->
++<!--            &lt;!&ndash; disable parent execution which fails here &ndash;&gt;-->
++<!--            <id>enforce-plugin-versions</id>-->
++<!--            <configuration>-->
++<!--              <fail>false</fail>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--        </executions>-->
+       </plugin>
+     </plugins>
+   </build>
+   
+-</project>
+\ No newline at end of file
++</project>
+diff --git a/activiti-cloud-service-common/dependencies-tests/pom.xml b/activiti-cloud-service-common/dependencies-tests/pom.xml
+index 15241970..53c5fb0a 100644
+--- a/activiti-cloud-service-common/dependencies-tests/pom.xml
++++ b/activiti-cloud-service-common/dependencies-tests/pom.xml
+@@ -19,23 +19,23 @@
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-enforcer-plugin</artifactId>
+-        <executions>
+-          <execution>
+-            <id>enforce-dependency-convergence</id>
+-            <goals>
+-              <goal>enforce</goal>
+-            </goals>
+-            <configuration>
+-              <rules>
+-                <reactorModuleConvergence>
+-                  <message>The reactor is not valid</message>
+-                  <ignoreModuleDependencies>false</ignoreModuleDependencies>
+-                </reactorModuleConvergence>
+-                <dependencyConvergence/>
+-              </rules>
+-            </configuration>
+-          </execution>
+-        </executions>
++<!--        <executions>-->
++<!--          <execution>-->
++<!--            <id>enforce-dependency-convergence</id>-->
++<!--            <goals>-->
++<!--              <goal>enforce</goal>-->
++<!--            </goals>-->
++<!--            <configuration>-->
++<!--              <rules>-->
++<!--                <reactorModuleConvergence>-->
++<!--                  <message>The reactor is not valid</message>-->
++<!--                  <ignoreModuleDependencies>false</ignoreModuleDependencies>-->
++<!--                </reactorModuleConvergence>-->
++<!--                <dependencyConvergence/>-->
++<!--              </rules>-->
++<!--            </configuration>-->
++<!--          </execution>-->
++<!--        </executions>-->
+       </plugin>
+     </plugins>
+   </build>
