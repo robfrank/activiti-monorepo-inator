@@ -1,0 +1,133 @@
+diff --git a/activiti-cloud-acceptance-tests/pom.xml b/activiti-cloud-acceptance-tests/pom.xml
+index a2f6dab8..33651af9 100644
+--- a/activiti-cloud-acceptance-tests/pom.xml
++++ b/activiti-cloud-acceptance-tests/pom.xml
+@@ -6,7 +6,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
+-    <relativePath/>
++    <relativePath>../activiti-cloud-build</relativePath>
+   </parent>
+   <groupId>org.activiti.cloud.acc</groupId>
+   <artifactId>activiti-cloud-acceptance-tests-parent</artifactId>
+diff --git a/activiti-cloud-api/pom.xml b/activiti-cloud-api/pom.xml
+index 92f3f95d..14a79997 100644
+--- a/activiti-cloud-api/pom.xml
++++ b/activiti-cloud-api/pom.xml
+@@ -6,6 +6,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../activiti-cloud-build</relativePath>
+   </parent>
+   <groupId>org.activiti.cloud.api</groupId>
+   <artifactId>activiti-cloud-api</artifactId>
+diff --git a/activiti-cloud-audit-service/pom.xml b/activiti-cloud-audit-service/pom.xml
+index 2800fb9c..9f748c00 100644
+--- a/activiti-cloud-audit-service/pom.xml
++++ b/activiti-cloud-audit-service/pom.xml
+@@ -6,7 +6,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
+-    <relativePath/>
++    <relativePath>../activiti-cloud-build</relativePath>
+   </parent>
+   <groupId>org.activiti.cloud.audit</groupId>
+   <artifactId>activiti-cloud-audit-service-parent</artifactId>
+diff --git a/activiti-cloud-build/activiti-cloud-dependencies-parent/pom.xml b/activiti-cloud-build/activiti-cloud-dependencies-parent/pom.xml
+index 173e7364..6222c242 100755
+--- a/activiti-cloud-build/activiti-cloud-dependencies-parent/pom.xml
++++ b/activiti-cloud-build/activiti-cloud-dependencies-parent/pom.xml
+@@ -6,6 +6,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../</relativePath>
+   </parent>
+   <artifactId>activiti-cloud-dependencies-parent</artifactId>
+   <packaging>pom</packaging>
+diff --git a/activiti-cloud-messages-service/pom.xml b/activiti-cloud-messages-service/pom.xml
+index e0e4b647..e81717c5 100644
+--- a/activiti-cloud-messages-service/pom.xml
++++ b/activiti-cloud-messages-service/pom.xml
+@@ -5,6 +5,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../activiti-cloud-build</relativePath>
+   </parent>
+ 
+   <groupId>org.activiti.cloud.messages</groupId>
+@@ -135,4 +136,4 @@
+     </plugins>
+     </build>  
+  
+-</project>
+\ No newline at end of file
++</project>
+diff --git a/activiti-cloud-modeling-service/pom.xml b/activiti-cloud-modeling-service/pom.xml
+index 7da6ab41..025463fa 100644
+--- a/activiti-cloud-modeling-service/pom.xml
++++ b/activiti-cloud-modeling-service/pom.xml
+@@ -6,7 +6,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
+-    <relativePath/>
++    <relativePath>../activiti-cloud-build</relativePath>
+   </parent>
+   <groupId>org.activiti.cloud.modeling</groupId>
+   <artifactId>activiti-cloud-modeling-service-parent</artifactId>
+diff --git a/activiti-cloud-notifications-graphql-service/pom.xml b/activiti-cloud-notifications-graphql-service/pom.xml
+index 22e948f3..4bdbf7db 100644
+--- a/activiti-cloud-notifications-graphql-service/pom.xml
++++ b/activiti-cloud-notifications-graphql-service/pom.xml
+@@ -6,7 +6,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
+-    <relativePath/>
++    <relativePath>../activiti-cloud-build</relativePath>
+   </parent>
+   <groupId>org.activiti.cloud.notifications.graphql</groupId>
+   <artifactId>activiti-cloud-notifications-service-graphql-parent</artifactId>
+diff --git a/activiti-cloud-query-service/pom.xml b/activiti-cloud-query-service/pom.xml
+index 629be64b..9634291a 100644
+--- a/activiti-cloud-query-service/pom.xml
++++ b/activiti-cloud-query-service/pom.xml
+@@ -6,7 +6,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
+-    <relativePath/>
++    <relativePath>../activiti-cloud-build</relativePath>
+   </parent>
+   <groupId>org.activiti.cloud.query</groupId>
+   <artifactId>activiti-cloud-query-service-parent</artifactId>
+diff --git a/activiti-cloud-runtime-bundle-service/pom.xml b/activiti-cloud-runtime-bundle-service/pom.xml
+index dfa5462e..39cae8b3 100644
+--- a/activiti-cloud-runtime-bundle-service/pom.xml
++++ b/activiti-cloud-runtime-bundle-service/pom.xml
+@@ -6,6 +6,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../activiti-cloud-build</relativePath>
+   </parent>
+   <groupId>org.activiti.cloud.rb</groupId>
+   <artifactId>activiti-cloud-runtime-bundle-service-parent</artifactId>
+diff --git a/activiti-cloud-service-common/pom.xml b/activiti-cloud-service-common/pom.xml
+index 95304bf6..7dc4f464 100644
+--- a/activiti-cloud-service-common/pom.xml
++++ b/activiti-cloud-service-common/pom.xml
+@@ -6,7 +6,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
+-    <relativePath/>
++    <relativePath>../activiti-cloud-build</relativePath>
+   </parent>
+   <groupId>org.activiti.cloud.common</groupId>
+   <artifactId>activiti-cloud-service-common-parent</artifactId>

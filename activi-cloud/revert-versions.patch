@@ -77,8 +77,8 @@ index 4b59b2a4..da81075e 100644
      <commons-lang.version>2.6</commons-lang.version>
      <commons-io.version>2.6</commons-io.version>
      <java-semver.version>0.9.0</java-semver.version>
--    <keycloak.version>8.0.2</keycloak.version>
--    <keycloak-spring-boot.version>8.0.2</keycloak-spring-boot.version>
+-    <keycloak.version>9.0.0</keycloak.version>
+-    <keycloak-spring-boot.version>9.0.0</keycloak-spring-boot.version>
 -    <logstash.version>6.3</logstash.version>
 -    <querydsl.version>4.2.2</querydsl.version>
 -    <resteasy.version>4.4.2.Final</resteasy.version>
@@ -97,3 +97,125 @@ index 4b59b2a4..da81075e 100644
      <javax.annotation.version>1.3.2</javax.annotation.version>
      <testcontainers.version>1.12.2</testcontainers.version>
    </properties>
+diff --git a/activiti-cloud-acceptance-tests/pom.xml b/activiti-cloud-acceptance-tests/pom.xml
+index 0e4fa34e..0435940d 100644
+--- a/activiti-cloud-acceptance-tests/pom.xml
++++ b/activiti-cloud-acceptance-tests/pom.xml
+@@ -20,7 +20,7 @@
+     <module>activiti-cloud-acceptance-tests-core</module>
+   </modules>
+   <properties>
+-    <activiti-cloud-build.version>7.1.34</activiti-cloud-build.version>
++    <activiti-cloud-build.version>7.1.0-SNAPSHOT</activiti-cloud-build.version>
+     <activiti-cloud-api.version>7.1.0-SNAPSHOT</activiti-cloud-api.version>
+     <activiti-cloud-acceptance-tests.version>${project.version}</activiti-cloud-acceptance-tests.version>
+     <serenity.version>2.1.6</serenity.version>
+diff --git a/activiti-cloud-api/pom.xml b/activiti-cloud-api/pom.xml
+index 14a79997..919d3cd4 100644
+--- a/activiti-cloud-api/pom.xml
++++ b/activiti-cloud-api/pom.xml
+@@ -15,7 +15,7 @@
+   <packaging>pom</packaging>
+   <properties>
+     <activiti-cloud-api.version>${project.version}</activiti-cloud-api.version>
+-    <activiti-cloud-build.version>7.1.34</activiti-cloud-build.version>
++    <activiti-cloud-build.version>7.1.0-SNAPSHOT</activiti-cloud-build.version>
+     <activiti-api.version>7.1.195</activiti-api.version>
+   </properties>
+   <modules>
+diff --git a/activiti-cloud-audit-service/pom.xml b/activiti-cloud-audit-service/pom.xml
+index ed9e1b84..d449bacf 100644
+--- a/activiti-cloud-audit-service/pom.xml
++++ b/activiti-cloud-audit-service/pom.xml
+@@ -22,7 +22,7 @@
+   </modules>
+   <properties>
+     <project.scm.repository>activiti-cloud-audit-service</project.scm.repository>
+-    <activiti-cloud-build.version>7.1.34</activiti-cloud-build.version>
++    <activiti-cloud-build.version>7.1.0-SNAPSHOT</activiti-cloud-build.version>
+     <activiti-cloud-service-common.version>7.1.0-SNAPSHOT</activiti-cloud-service-common.version>
+     <activiti-cloud-audit-service.version>${project.version}</activiti-cloud-audit-service.version>
+     <json-unit.version>2.13.0</json-unit.version>
+diff --git a/activiti-cloud-messages-service/pom.xml b/activiti-cloud-messages-service/pom.xml
+index 3171b268..ef89728d 100644
+--- a/activiti-cloud-messages-service/pom.xml
++++ b/activiti-cloud-messages-service/pom.xml
+@@ -16,7 +16,7 @@
+   <url>http://activiti.org</url>
+
+   <properties>
+-    <activiti-cloud-build.version>7.1.34</activiti-cloud-build.version>
++    <activiti-cloud-build.version>7.1.0-SNAPSHOT</activiti-cloud-build.version>
+     <activiti-cloud-service-common.version>7.1.0-SNAPSHOT</activiti-cloud-service-common.version>
+     <activiti-cloud-runtime-bundle-service.version>7.1.0-SNAPSHOT</activiti-cloud-runtime-bundle-service.version>
+     <activiti-cloud-messages-service.version>${project.version}</activiti-cloud-messages-service.version>
+diff --git a/activiti-cloud-modeling-service/pom.xml b/activiti-cloud-modeling-service/pom.xml
+index 6b10c25d..212a86ec 100644
+--- a/activiti-cloud-modeling-service/pom.xml
++++ b/activiti-cloud-modeling-service/pom.xml
+@@ -22,7 +22,7 @@
+   </modules>
+   <properties>
+     <project.scm.repository>activiti-cloud-modeling-service</project.scm.repository>
+-    <activiti-cloud-build.version>7.1.34</activiti-cloud-build.version>
++    <activiti-cloud-build.version>7.1.0-SNAPSHOT</activiti-cloud-build.version>
+     <activiti-dependencies.version>7.1.195</activiti-dependencies.version>
+     <activiti-cloud-service-common.version>7.1.0-SNAPSHOT</activiti-cloud-service-common.version>
+     <activiti-cloud-acceptance-tests.version>7.1.0-SNAPSHOT</activiti-cloud-acceptance-tests.version>
+diff --git a/activiti-cloud-notifications-graphql-service/pom.xml b/activiti-cloud-notifications-graphql-service/pom.xml
+index 9ca969df..07760ace 100644
+--- a/activiti-cloud-notifications-graphql-service/pom.xml
++++ b/activiti-cloud-notifications-graphql-service/pom.xml
+@@ -15,7 +15,7 @@
+   <packaging>pom</packaging>
+   <properties>
+     <project.scm.repository>activiti-cloud-notifications-service-graphql</project.scm.repository>
+-    <activiti-cloud-build.version>7.1.34</activiti-cloud-build.version>
++    <activiti-cloud-build.version>7.1.0-SNAPSHOT</activiti-cloud-build.version>
+     <activiti-cloud-query-service.version>7.1.0-SNAPSHOT</activiti-cloud-query-service.version>
+     <activiti-cloud-notifications-service-graphql.version>${project.version}</activiti-cloud-notifications-service-graphql.version>
+     <graphql-jpa-query.version>0.4.0</graphql-jpa-query.version>
+diff --git a/activiti-cloud-query-service/pom.xml b/activiti-cloud-query-service/pom.xml
+index a453f73b..6f83082d 100644
+--- a/activiti-cloud-query-service/pom.xml
++++ b/activiti-cloud-query-service/pom.xml
+@@ -21,7 +21,7 @@
+   </modules>
+   <properties>
+ 	  <project.scm.repository>activiti-cloud-query-service</project.scm.repository>
+-    <activiti-cloud-build.version>7.1.34</activiti-cloud-build.version>
++    <activiti-cloud-build.version>7.1.0-SNAPSHOT</activiti-cloud-build.version>
+     <activiti-dependencies.version>7.1.195</activiti-dependencies.version>
+     <activiti-cloud-service-common.version>7.1.0-SNAPSHOT</activiti-cloud-service-common.version>
+     <activiti-cloud-query-service.version>${project.version}</activiti-cloud-query-service.version>
+diff --git a/activiti-cloud-runtime-bundle-service/pom.xml b/activiti-cloud-runtime-bundle-service/pom.xml
+index 5b8eabe3..41ee00ed 100644
+--- a/activiti-cloud-runtime-bundle-service/pom.xml
++++ b/activiti-cloud-runtime-bundle-service/pom.xml
+@@ -23,7 +23,7 @@
+   <properties>
+ 	<project.scm.repository>activiti-cloud-runtime-bundle-service</project.scm.repository>
+     <activiti-dependencies.version>7.1.195</activiti-dependencies.version>
+-    <activiti-cloud-build.version>7.1.34</activiti-cloud-build.version>
++    <activiti-cloud-build.version>7.1.0-SNAPSHOT</activiti-cloud-build.version>
+     <activiti-cloud-service-common.version>7.1.0-SNAPSHOT</activiti-cloud-service-common.version>
+     <activiti-cloud-runtime-bundle-service.version>${project.version}</activiti-cloud-runtime-bundle-service.version>
+     <skipITs>false</skipITs>
+diff --git a/activiti-cloud-service-common/pom.xml b/activiti-cloud-service-common/pom.xml
+index dca8edfd..fe9fdabd 100644
+--- a/activiti-cloud-service-common/pom.xml
++++ b/activiti-cloud-service-common/pom.xml
+@@ -35,7 +35,7 @@
+   </modules>
+   <properties>
+     <project.scm.repository>activiti-cloud-service-common</project.scm.repository>
+-    <activiti-cloud-build.version>7.1.34</activiti-cloud-build.version>
++    <activiti-cloud-build.version>7.1.0-SNAPSHOT</activiti-cloud-build.version>
+     <activiti-cloud-service-common.version>${project.version}</activiti-cloud-service-common.version>
+     <activiti-core-common.version>7.1.195</activiti-core-common.version>
+     <activiti-cloud-api.version>7.1.0-SNAPSHOT</activiti-cloud-api.version>
+
+
+
+
+

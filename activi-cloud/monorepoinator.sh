@@ -2,7 +2,7 @@
 
 script_dir="$(cd "$( dirname "$0" )" && pwd)"
 
-monorepo_dir=$script_dir/../../activiti-cloud-monorepo-dest-6
+monorepo_dir=$script_dir/../../activiti-cloud-monorepo-dest-9
 git_base_url="git@github.com:Activiti"
 git_branch="develop"
 git_dest_branch="develop-mono"
@@ -67,20 +67,23 @@ git commit -m "fix CRLF on poms" .
 echo "---> fix CRLF on poms"
 
 echo "fix child versions"
-mvn versions:update-child-modules -DallowSnapshots=true
+mvn versions:update-child-modules -DallowSnapshots=true -DgenerateBackupPoms=false
 mvn versions:commit
 git commit -m "fix child versions" .
-echo "---> fix child versions"
 
 echo "update pom properties"
-mvn versions:update-properties
+mvn versions:update-properties -DgenerateBackupPoms=false -Dexcludes=org.activiti.cloud.build:activiti-cloud-dependencies-parent
 mvn versions:commit
 git commit -m "update pom properties" .
 echo "---> update pom properties"
 
-echo "apply patch to fix poms: "
+echo "apply patch to disable enforcer: "
 git apply -v $script_dir/disable-enforcer.patch
-git commit -m "fix pom versions with patch" .
+git commit -m "disbaled enforcer with patch" .
+
+echo "apply patch to fix parent: "
+git apply -v $script_dir/fix-parent.patch
+git commit -m "fix pom parent with patch" .
 
 echo "apply patch to fix poms: revert versions"
 git apply -v $script_dir/revert-versions.patch
