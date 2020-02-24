@@ -131,3 +131,15 @@ index 95304bf6..7dc4f464 100644
    </parent>
    <groupId>org.activiti.cloud.common</groupId>
    <artifactId>activiti-cloud-service-common-parent</artifactId>
+diff --git a/activiti-cloud-connectors/pom.xml b/activiti-cloud-connectors/pom.xml
+index 363528eb7..108696129 100644
+--- a/activiti-cloud-connectors/pom.xml
++++ b/activiti-cloud-connectors/pom.xml
+@@ -6,6 +6,7 @@
+     <groupId>org.activiti.cloud.build</groupId>
+     <artifactId>activiti-cloud-parent</artifactId>
+     <version>7.1.0-SNAPSHOT</version>
++    <relativePath>../activiti-cloud-build</relativePath>
+   </parent>
+   <groupId>org.activiti.cloud.connector</groupId>
+   <artifactId>activiti-cloud-connectors-parent</artifactId>

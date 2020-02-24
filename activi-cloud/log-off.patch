@@ -1,0 +1,70 @@
+diff --git a/activiti-cloud-query-service/activiti-cloud-starter-query/src/test/resources/logback-test.xml b/activiti-cloud-query-service/activiti-cloud-starter-query/src/test/resources/logback-test.xml
+index 0d853eb21..da5bd2ed5 100644
+--- a/activiti-cloud-query-service/activiti-cloud-starter-query/src/test/resources/logback-test.xml
++++ b/activiti-cloud-query-service/activiti-cloud-starter-query/src/test/resources/logback-test.xml
+@@ -16,17 +16,6 @@
+   -->
+ 
+ <configuration>
+-
+-  <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+-    <encoder>
+-      <!-- %l lowers performance -->
+-      <!--<pattern>%d [%t] %-5p %l%n  %m%n</pattern>-->
+-      <pattern>%d [%t|%C] %-5p %m%n</pattern>
+-    </encoder>
+-  </appender>
+-
+-  <root level="INFO">
+-    <appender-ref ref="consoleAppender" />
+-  </root>
+-
++  <include resource="org/springframework/boot/logging/logback/base.xml" />
++  <root level="OFF" />
+ </configuration>
+diff --git a/activiti-cloud-runtime-bundle-service/activiti-cloud-services-runtime-bundle/activiti-cloud-services-events/src/test/resources/logback-test.xml b/activiti-cloud-runtime-bundle-service/activiti-cloud-services-runtime-bundle/activiti-cloud-services-events/src/test/resources/logback-test.xml
+index 0e204e76c..e1f95399f 100644
+--- a/activiti-cloud-runtime-bundle-service/activiti-cloud-services-runtime-bundle/activiti-cloud-services-events/src/test/resources/logback-test.xml
++++ b/activiti-cloud-runtime-bundle-service/activiti-cloud-services-runtime-bundle/activiti-cloud-services-events/src/test/resources/logback-test.xml
+@@ -1,16 +1,5 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <configuration>
+-
+-  <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+-    <encoder>
+-      <!-- %l lowers performance -->
+-      <!--<pattern>%d [%t] %-5p %l%n  %m%n</pattern>-->
+-      <pattern>%d [%t|%C] %-5p %m%n</pattern>
+-    </encoder>
+-  </appender>
+-
+-  <root level="info">
+-    <appender-ref ref="consoleAppender" />
+-  </root>
+-
++  <include resource="org/springframework/boot/logging/logback/base.xml" />
++  <root level="OFF" />
+ </configuration>
+diff --git a/activiti-cloud-runtime-bundle-service/activiti-cloud-starter-runtime-bundle/src/test/resources/logback-test.xml b/activiti-cloud-runtime-bundle-service/activiti-cloud-starter-runtime-bundle/src/test/resources/logback-test.xml
+index 0e204e76c..e1f95399f 100644
+--- a/activiti-cloud-runtime-bundle-service/activiti-cloud-starter-runtime-bundle/src/test/resources/logback-test.xml
++++ b/activiti-cloud-runtime-bundle-service/activiti-cloud-starter-runtime-bundle/src/test/resources/logback-test.xml
+@@ -1,16 +1,5 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <configuration>
+-
+-  <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+-    <encoder>
+-      <!-- %l lowers performance -->
+-      <!--<pattern>%d [%t] %-5p %l%n  %m%n</pattern>-->
+-      <pattern>%d [%t|%C] %-5p %m%n</pattern>
+-    </encoder>
+-  </appender>
+-
+-  <root level="info">
+-    <appender-ref ref="consoleAppender" />
+-  </root>
+-
++  <include resource="org/springframework/boot/logging/logback/base.xml" />
++  <root level="OFF" />
+ </configuration>

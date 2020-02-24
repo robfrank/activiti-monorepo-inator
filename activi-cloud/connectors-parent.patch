@@ -1,0 +1,13 @@
+diff --git a/activiti-cloud-connectors/pom.xml b/activiti-cloud-connectors/pom.xml
+index 689d852cb..d2626106e 100644
+--- a/activiti-cloud-connectors/pom.xml
++++ b/activiti-cloud-connectors/pom.xml
+@@ -13,7 +13,7 @@
+   <version>7.1.0-SNAPSHOT</version>
+   <packaging>pom</packaging>
+   <modules>
+-    <module>dependencies-tests</module>
++<!--    <module>dependencies-tests</module>-->
+     <module>activiti-cloud-connectors-dependencies</module>
+     <module>activiti-cloud-starter-connector</module>
+   </modules>

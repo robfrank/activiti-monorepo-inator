@@ -1,0 +1,179 @@
+diff --git a/activiti-cloud-acceptance-tests/pom.xml b/activiti-cloud-acceptance-tests/pom.xml
+index 49f93caa..371fdeff 100644
+--- a/activiti-cloud-acceptance-tests/pom.xml
++++ b/activiti-cloud-acceptance-tests/pom.xml
+@@ -14,7 +14,7 @@
+   <name>Activiti Cloud :: Acceptance Tests</name>
+   <packaging>pom</packaging>
+   <modules>
+-    <module>dependencies-tests</module>
++
+     <module>activiti-cloud-acceptance-tests-dependencies</module>
+     <module>activiti-cloud-acceptance-tests-shared</module>
+     <module>activiti-cloud-acceptance-tests-core</module>
+diff --git a/activiti-cloud-api/pom.xml b/activiti-cloud-api/pom.xml
+index 919d3cd4..0ad7ee34 100644
+--- a/activiti-cloud-api/pom.xml
++++ b/activiti-cloud-api/pom.xml
+@@ -19,7 +19,7 @@
+     <activiti-api.version>7.1.195</activiti-api.version>
+   </properties>
+   <modules>
+-    <module>dependencies-tests</module>
++
+     <module>activiti-cloud-api-dependencies</module>
+     <module>activiti-cloud-api-model-shared</module>
+     <module>activiti-cloud-api-model-shared-impl</module>
+diff --git a/activiti-cloud-audit-service/pom.xml b/activiti-cloud-audit-service/pom.xml
+index 68bd17fd..9a2603f4 100644
+--- a/activiti-cloud-audit-service/pom.xml
++++ b/activiti-cloud-audit-service/pom.xml
+@@ -14,7 +14,7 @@
+   <packaging>pom</packaging>
+   <name>Activiti Cloud Audit :: Parent</name>
+   <modules>
+-    <module>dependencies-tests</module>
++
+     <module>activiti-cloud-audit-dependencies</module>
+     <module>activiti-cloud-services-audit-api</module>
+     <module>activiti-cloud-services-audit-jpa</module>
+@@ -43,7 +43,7 @@
+         <version>${activiti-cloud-service-common.version}</version>
+         <type>pom</type>
+         <scope>import</scope>
+-      </dependency>    
++      </dependency>
+       <dependency>
+         <groupId>net.javacrumbs.json-unit</groupId>
+         <artifactId>json-unit-fluent</artifactId>
+diff --git a/activiti-cloud-connectors/pom.xml b/activiti-cloud-connectors/pom.xml
+index d2626106..98348c8e 100644
+--- a/activiti-cloud-connectors/pom.xml
++++ b/activiti-cloud-connectors/pom.xml
+@@ -13,7 +13,7 @@
+   <version>7.1.0-SNAPSHOT</version>
+   <packaging>pom</packaging>
+   <modules>
+-<!--    <module>dependencies-tests</module>-->
++<!---->
+     <module>activiti-cloud-connectors-dependencies</module>
+     <module>activiti-cloud-starter-connector</module>
+   </modules>
+diff --git a/activiti-cloud-messages-service/pom.xml b/activiti-cloud-messages-service/pom.xml
+index ef89728d..3bad8219 100644
+--- a/activiti-cloud-messages-service/pom.xml
++++ b/activiti-cloud-messages-service/pom.xml
+@@ -45,7 +45,7 @@
+         <type>pom</type>
+         <scope>import</scope>
+       </dependency>
+-      
++
+     </dependencies>
+   </dependencyManagement>
+ 
+@@ -84,10 +84,10 @@
+       </roles>
+     </developer>
+   </developers>
+-  
++
+   <modules>
+     <module>dependencies</module>
+-    <module>dependencies-tests</module>
++
+     <module>services</module>
+     <module>starters</module>
+     <module>integration-tests</module>
+@@ -104,7 +104,7 @@
+     <system>Travis</system>
+     <url>https://travis-ci.org/Activiti/activiti-cloud-messages-service</url>
+   </ciManagement>
+- 
++
+   <repositories>
+     <repository>
+       <id>activiti-releases</id>
+@@ -123,7 +123,7 @@
+       </snapshots>
+     </repository>
+   </repositories>
+-    
++
+   <build>
+     <plugins>
+       <plugin>
+@@ -134,6 +134,6 @@
+         </configuration>
+       </plugin>
+     </plugins>
+-    </build>  
+- 
++    </build>
++
+ </project>
+diff --git a/activiti-cloud-modeling-service/pom.xml b/activiti-cloud-modeling-service/pom.xml
+index 212a86ec..87fa2133 100644
+--- a/activiti-cloud-modeling-service/pom.xml
++++ b/activiti-cloud-modeling-service/pom.xml
+@@ -14,7 +14,7 @@
+   <packaging>pom</packaging>
+   <name>Activiti Cloud :: Modeling Services :: Parent</name>
+   <modules>
+-    <module>dependencies-tests</module>
++
+     <module>activiti-cloud-modeling-dependencies</module>
+     <module>activiti-cloud-services-modeling</module>
+     <module>activiti-cloud-starter-modeling</module>
+diff --git a/activiti-cloud-notifications-graphql-service/pom.xml b/activiti-cloud-notifications-graphql-service/pom.xml
+index 07760ace..e19e3c21 100644
+--- a/activiti-cloud-notifications-graphql-service/pom.xml
++++ b/activiti-cloud-notifications-graphql-service/pom.xml
+@@ -67,7 +67,7 @@
+     </dependency>
+   </dependencies>
+   <modules>
+-    <module>dependencies-tests</module>
++
+     <module>dependencies</module>
+     <module>services</module>
+     <module>starter</module>
+diff --git a/activiti-cloud-query-service/pom.xml b/activiti-cloud-query-service/pom.xml
+index 97438e64..43441f72 100644
+--- a/activiti-cloud-query-service/pom.xml
++++ b/activiti-cloud-query-service/pom.xml
+@@ -14,7 +14,7 @@
+   <version>7.1.0-SNAPSHOT</version>
+   <packaging>pom</packaging>
+   <modules>
+-    <module>dependencies-tests</module>
++
+     <module>activiti-cloud-query-dependencies</module>
+     <module>activiti-cloud-services-query</module>
+     <module>activiti-cloud-starter-query</module>
+diff --git a/activiti-cloud-runtime-bundle-service/pom.xml b/activiti-cloud-runtime-bundle-service/pom.xml
+index 41ee00ed..d9b3b668 100644
+--- a/activiti-cloud-runtime-bundle-service/pom.xml
++++ b/activiti-cloud-runtime-bundle-service/pom.xml
+@@ -14,7 +14,7 @@
+   <packaging>pom</packaging>
+   <name>Activiti Cloud Runtime Bundle Service :: Parent</name>
+   <modules>
+-    <module>dependencies-tests</module>
++
+     <module>activiti-cloud-runtime-bundle-dependencies</module>
+     <module>activiti-cloud-services-runtime-bundle</module>
+     <module>activiti-cloud-starter-runtime-bundle</module>
+diff --git a/activiti-cloud-service-common/pom.xml b/activiti-cloud-service-common/pom.xml
+index fe9fdabd..992be6ca 100644
+--- a/activiti-cloud-service-common/pom.xml
++++ b/activiti-cloud-service-common/pom.xml
+@@ -14,7 +14,7 @@
+   <packaging>pom</packaging>
+   <name>Activiti Cloud :: Service Common Parent</name>
+   <modules>
+-    <module>dependencies-tests</module>
++
+     <module>activiti-cloud-service-common-dependencies</module>
+     <module>activiti-cloud-services-test</module>
+     <module>activiti-cloud-services-monitoring</module>
