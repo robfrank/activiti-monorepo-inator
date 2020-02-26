@@ -7,23 +7,29 @@ GROUP_ID := $(shell mvn help:evaluate -Dexpression=project.groupId -q -DforceStd
 ARTIFACT_ID := $(shell mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
 RELEASE_ARTIFACT := $(GROUP_ID):$(ARTIFACT_ID)
 
-updatebot/push: 
+updatebot/push:
 	@echo doing updatebot push $(RELEASE_VERSION)
 	updatebot push --ref $(RELEASE_VERSION)
 
 
-updatebot/push-version: 
+updatebot/push-version:
 	@echo Resolving push versions for artifacts........
-	$(eval ACTIVITI_CORE_COMMON_VERSION=$(shell mvn help:evaluate -Dexpression=activiti-core-common.version -q -DforceStdout))
-	$(eval ACTIVITI_API_VERSION=$(shell mvn help:evaluate -Dexpression=activiti-api.version -q -DforceStdout))
-	$(eval ACTIVITI_BUILD_VERSION=$(shell mvn help:evaluate -Dexpression=activiti-build.version -q -DforceStdout))
+	$(eval ACTIVITI_CLOUD_VERSION=$(shell mvn help:evaluate -Dexpression=activiti-cloud-mono-aggregator.version -q -DforceStdout))
 
 	@echo Doing updatebot push-version.....
-	updatebot push-version --kind maven \
-		org.activiti.dependencies:activiti-dependencies $(RELEASE_VERSION) \
-		org.activiti.api:activiti-api-dependencies $(ACTIVITI_API_VERSION) \
-		org.activiti.core.common:activiti-core-common-dependencies $(ACTIVITI_CORE_COMMON_VERSION) \
-		org.activiti.build:activiti-parent $(ACTIVITI_BUILD_VERSION)	
+	@echo updatebot push-version --kind maven \
+		org.activiti.cloud.modeling:activiti-cloud-modeling-dependencies $(RELEASE_VERSION) \
+		org.activiti.cloud.audit:activiti-cloud-audit-dependencies $(RELEASE_VERSION) \
+		org.activiti.cloud.api:activiti-cloud-api-dependencies $(RELEASE_VERSION) \
+		org.activiti.cloud.build:activiti-cloud-parent $(RELEASE_VERSION) \
+		org.activiti.cloud.build:activiti-cloud-dependencies-parent $(RELEASE_VERSION)\
+		org.activiti.cloud.connector:activiti-cloud-connectors-dependencies $(RELEASE_VERSION) \
+		org.activiti.cloud.messages:activiti-cloud-messages-dependencies $(RELEASE_VERSION) \
+		org.activiti.cloud.modeling:activiti-cloud-modeling-dependencies $(RELEASE_VERSION) \
+		org.activiti.cloud.notifications.graphql:activiti-cloud-notifications-graphql-dependencies $(RELEASE_VERSION) \
+		org.activiti.cloud.query:activiti-cloud-query-dependencies $(RELEASE_VERSION) \
+		org.activiti.cloud.rb:activiti-cloud-runtime-bundle-dependencies $(RELEASE_VERSION) \
+		org.activiti.cloud.common:activiti-cloud-service-common-dependencies $(RELEASE_VERSION)
 
 updatebot/update:
 	@echo doing updatebot update $(RELEASE_VERSION)

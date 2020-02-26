@@ -2,18 +2,27 @@ github:
   organisations:
     - name: activiti
       repositories:
-        - name: activiti-cloud-full-chart
+        - name: activiti-cloud-acceptance-scenarios
           branch: master
           useSinglePullRequest: true
-    - name: alfresco
-      repositories:
-        - name: alfresco-process-parent
+        - name: activiti-cloud-dependencies
+          branch: develop
           useSinglePullRequest: true
-        - name: alfresco-process-application-oracle-kafka
+        - name: activiti-cloud-audit
+          branch: master
           useSinglePullRequest: true
-        - name: alfresco-process-application-deployment
+        - name: example-cloud-connector
+          branch: master
           useSinglePullRequest: true
-        - name: alfresco-process-springboot-service-deployment
+        - name: example-runtime-bundle
+          branch: master
           useSinglePullRequest: true
-        - name: alfresco-adf-app-deployment
+        - name: activiti-cloud-modeling
+          branch: master
+          useSinglePullRequest: true
+        - name: activiti-cloud-query
+          useSinglePullRequest: true
+          branch: master
+        - name: example-runtime-bundle
+          branch: master
           useSinglePullRequest: true

@@ -44,8 +44,8 @@ do
     do
         if [ -f "$file" ] || [ -d "$file" ] ; then
             git rm -rf $file
-        fi        
-    done    
+        fi
+    done
 
     git commit -m "Moving $repo into its own subdirectory"
 
@@ -108,7 +108,10 @@ git apply -v $script_dir/log-off.patch
 git commit -m "set log off" .
 echo "---> apply patch to set log Off"
 
-
+echo "apply patch to set dependencies to project.version"
+git apply -v $script_dir/set-dep-to-project-version.patch
+git commit -m "se dependencies to project.version" .
+echo "---> apply patch to set dependencies to project.version"
 
 echo "copying build configuration files"
 cp -a $script_dir/conf-files/.github $monorepo_dir/
