@@ -2,7 +2,7 @@
 
 script_dir="$(cd "$( dirname "$0" )" && pwd)"
 
-monorepo_dir=$script_dir/../../activiti-cloud-final
+monorepo_dir=$script_dir/../../activiti-cloud
 git_base_url="git@github.com:Activiti"
 git_branch="develop"
 git_dest_branch="develop"
@@ -127,6 +127,8 @@ gfind $monorepo_dir -path "*/src/test" -exec cp -a $script_dir/conf-files/logbac
 
 git add .
 git commit -m "add build configuration files" .
+
+git tag -fa v7.1.399 -m "Release version 7.1.399"
 
 echo "workdir is:: $script_dir"
 cd $script_dir

@@ -12,7 +12,7 @@ env:
 before_install:
   - mkdir -p $HOME/.m2
 
-#install: travis_wait mvn ${MAVEN_CLI_OPTS} dependency:resolve dependency:resolve-plugins || true
+install: travis_wait mvn ${MAVEN_CLI_OPTS} dependency:resolve dependency:resolve-plugins || true
 
 cache:
   directories:

@@ -16,7 +16,7 @@ index 919d3cd4..0ad7ee34 100644
 --- a/activiti-cloud-api/pom.xml
 +++ b/activiti-cloud-api/pom.xml
 @@ -19,7 +19,7 @@
-     <activiti-api.version>7.1.195</activiti-api.version>
+     <activiti-api.version>7.1.196</activiti-api.version>
    </properties>
    <modules>
 -    <module>dependencies-tests</module>
