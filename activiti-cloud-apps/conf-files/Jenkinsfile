@@ -129,11 +129,9 @@ pipeline {
     stage('Build And Deploy Helm Chart') {
       steps {
         container('maven') {
-//          sh "make updatebot/push-version-dry"
 
           sh "updatebot --dry push-version --kind helm activiti-cloud-dependencies $VERSION $ACTIVITI_CLOUD_FULL_CHART_VERSIONS"
           sh """echo "-------------------------------------" """
-//          sh "make prepare-helm-chart"
           sh """cd  .updatebot-repos/github/activiti/activiti-cloud-full-chart/charts/activiti-cloud-full-example/ && \\
                     rm -rf requirements.lock && \\
                     rm -rf charts && \\
@@ -146,9 +144,6 @@ pipeline {
                     helm lint && \\
                     helm package . """
           sh """echo "-------------------------------------" """
-//              sh "make replace-release-full-chart-names"
-//              sh """echo "-------------------------------------" """
-//          sh "make run-helm-chart"
           sh """ cd  .updatebot-repos/github/activiti/activiti-cloud-full-chart/charts/activiti-cloud-full-example/ && \\
             helm upgrade $PREVIEW_NAMESPACE . \\
             --install \\
