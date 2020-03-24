@@ -87,8 +87,8 @@ pipeline {
                 retry(5) {
                   def name = chart.substring(chart.lastIndexOf('/') + 1)
 
-                  sh """ sed -i -e "s/version:.*/version: $VERSION/" Chart.yaml"""
-                  sh """ sed -i -e "s|repository: .*|repository: $DOCKER_REGISTRY/$ORG/$chart|" values.yaml"""
+                  sh """sed -i -e "s/version:.*/version: $VERSION/" Chart.yaml"""
+                  sh """sed -i -e "s|repository: .*|repository: $DOCKER_REGISTRY/$ORG/$chart|" values.yaml"""
                   sh """sed -i -e "s/tag: .*/tag: $VERSION/" values.yaml"""
                 }
               }
@@ -96,7 +96,7 @@ pipeline {
 
             sh "git add --all"
             sh """git commit -m "release $VERSION" --allow-empty """
-            sh """ git tag -fa v$VERSION -m "Release version $VERSION" """
+            sh """git tag -fa v$VERSION -m "Release version $VERSION" """
             sh "git push origin v$VERSION "
 
             def modules = ["activiti-cloud-query",
@@ -107,9 +107,7 @@ pipeline {
               sh "echo working on::: $module"
               dir("$module") {
                 sh 'mvn clean deploy'
-
                 sh 'export VERSION=$VERSION && skaffold build -f skaffold.yaml'
-
                 sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$module:$VERSION"
               }
             }
@@ -126,7 +124,6 @@ pipeline {
         container('maven') {
           script {
 
-
             def modules = ["activiti-cloud-query/charts/activiti-cloud-query",
                            "example-runtime-bundle/charts/runtime-bundle",
                            "example-cloud-connector/charts/activiti-cloud-connector"]
@@ -134,7 +131,6 @@ pipeline {
             for (module in modules) {
               sh "echo working on::: $module"
               dir("$module") {
-//                sh 'make release'
                 def name = module.substring(module.lastIndexOf('/') + 1)
                 sh "echo $name"
                 sh "rm -rf requirements.lock"
@@ -147,28 +143,23 @@ pipeline {
                 sh "helm dependency build"
                 sh "helm lint"
                 sh "helm install . --name $name --debug --dry-run"
-
                 sh "helm package ."
 
-//                retry(5) {
-
-                def GITHUB_CHARTS_DIR = sh(script: "echo \$(basename $GITHUB_CHARTS_REPO)", returnStdout: true).trim()
-                sh """git clone -b "$GITHUB_CHARTS_BRANCH" "$GITHUB_CHARTS_REPO" $GITHUB_CHARTS_DIR """
-                def archive = name + "-" + VERSION + ".tgz"
-                sh """cp $archive $GITHUB_CHARTS_DIR """
-                sh """ cd $GITHUB_CHARTS_DIR && \
+                retry(5) {
+                  def GITHUB_CHARTS_DIR = sh(script: "echo \$(basename $GITHUB_CHARTS_REPO)", returnStdout: true).trim()
+                  sh """git clone -b "$GITHUB_CHARTS_BRANCH" "$GITHUB_CHARTS_REPO" $GITHUB_CHARTS_DIR """
+                  def archive = name + "-" + VERSION + ".tgz"
+                  sh """cp $archive $GITHUB_CHARTS_DIR """
+                  sh """ cd $GITHUB_CHARTS_DIR && \
                          helm repo index . && \
                          git add . && \
                          git status && \
                          git commit -m "fix:(version) release $archive" && \
                          git pull && \
                          git push origin "$GITHUB_CHARTS_BRANCH" """
-                sh "rm -rf $GITHUB_CHARTS_DIR"
-
-
-//                }
+                  sh "rm -rf $GITHUB_CHARTS_DIR"
+                }
               }
-
             }
 
 //            retry(5) {
@@ -198,10 +189,8 @@ pipeline {
     stage('Build And Deploy Helm Chart') {
       steps {
         container('maven') {
-//          sh "make updatebot/push-version-dry"
           sh "updatebot --dry push-version --kind helm activiti-cloud-dependencies $VERSION $ACTIVITI_CLOUD_FULL_CHART_VERSIONS"
           sh """echo "-------------------------------------" """
-//          sh "make prepare-helm-chart"
           sh """cd  .updatebot-repos/github/activiti/activiti-cloud-full-chart/charts/activiti-cloud-full-example/ && \\
                     rm -rf requirements.lock && \\
                     rm -rf charts && \\
@@ -214,10 +203,7 @@ pipeline {
                     helm lint && \\
                     helm package . """
           sh """echo "-------------------------------------" """
-//              sh "make replace-release-full-chart-names"
-//              sh """echo "-------------------------------------" """
-//          sh "make run-helm-chart"
-          sh """ cd  .updatebot-repos/github/activiti/activiti-cloud-full-chart/charts/activiti-cloud-full-example/ && \\
+          sh """cd  .updatebot-repos/github/activiti/activiti-cloud-full-chart/charts/activiti-cloud-full-example/ && \\
             helm upgrade $PREVIEW_NAMESPACE . \\
             --install \\
             --set global.gateway.domain=$GLOBAL_GATEWAY_DOMAIN \\
@@ -233,7 +219,6 @@ pipeline {
       steps {
         container('maven') {
           dir("activiti-cloud-acceptance-scenarios") {
-
             sh "mvn clean install -DskipTests"
           }
         }
@@ -246,7 +231,6 @@ pipeline {
           steps {
             container('maven') {
               dir("activiti-cloud-acceptance-scenarios") {
-
                 sh "mvn -pl 'modeling-acceptance-tests' clean verify"
               }
             }
