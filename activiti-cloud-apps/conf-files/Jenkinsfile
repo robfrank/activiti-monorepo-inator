@@ -51,7 +51,7 @@ pipeline {
           // sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$VERSION"
 
           dir("./charts/$APP_NAME") {
-            sh "make preview"
+//            sh "make preview"
           }
 
           sh "mvn deploy -DskipTests"
@@ -78,7 +78,7 @@ pipeline {
             sh "echo $VERSION > VERSION"
 
             def charts = ["activiti-cloud-query/charts/activiti-cloud-query",
-                          "example-runtime-bundle/charts/runtime-bundle",
+                          "example-runtime-bundle/charts/example-runtime-bundle",
                           "example-cloud-connector/charts/activiti-cloud-connector"]
 
             for (chart in charts) {
@@ -125,7 +125,7 @@ pipeline {
           script {
 
             def modules = ["activiti-cloud-query/charts/activiti-cloud-query",
-                           "example-runtime-bundle/charts/runtime-bundle",
+                           "example-runtime-bundle/charts/example-runtime-bundle",
                            "example-cloud-connector/charts/activiti-cloud-connector"]
 
             for (module in modules) {
@@ -283,14 +283,16 @@ pipeline {
       steps {
         container('maven') {
           script {
-            def modules = ["example-runtime-bundle",
-                           "activiti-cloud-query",
-                           "example-cloud-connector"]
+            def charts = ["activiti-cloud-query/charts/activiti-cloud-query",
+                          "example-runtime-bundle/charts/example-runtime-bundle",
+                          "example-cloud-connector/charts/activiti-cloud-connector"]
 
-            for (module in modules) {
-              dir("$module/charts/$module") {
+            for (chart in charts) {
+              sh "echo working on::: $chart"
+              dir("$chart") {
                 // it is failing looks like a bug in JX
                 // sh 'jx step changelog --version v$VERSION'
+                def name = chart.substring(chart.lastIndexOf('/') + 1)
 
                 // release the helm chart
                 retry(5) {
@@ -298,7 +300,7 @@ pipeline {
                 }
                 sh 'sleep 10'
                 retry(5) {
-                  //                     sh 'make updatebot/push-version'
+                  sh 'make updatebot/push-version'
                 }
               }
             }

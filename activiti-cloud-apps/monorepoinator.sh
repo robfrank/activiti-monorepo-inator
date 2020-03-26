@@ -2,7 +2,7 @@
 
 script_dir="$(cd "$( dirname "$0" )" && pwd)"
 
-monorepo_dir=$script_dir/../../activiti-cloud-apps-monorepo-dest-4
+monorepo_dir=$script_dir/../../activiti-cloud-apps-monorepo-dest-5
 git_base_url="git@github.com:Activiti"
 git_branch="master"
 git_dest_branch="develop"
