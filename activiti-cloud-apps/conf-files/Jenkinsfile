@@ -48,13 +48,6 @@ pipeline {
           sh "mvn install"
           sh 'export VERSION=$VERSION && skaffold build -f skaffold.yaml'
 
-          // sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$VERSION"
-
-          dir("./charts/$APP_NAME") {
-//            sh "make preview"
-          }
-
-          sh "mvn deploy -DskipTests"
         }
       }
     }
@@ -74,15 +67,11 @@ pipeline {
           sh "mvn versions:set -DprocessAllModules=true -DgenerateBackupPoms=false -DnewVersion=$VERSION"
 
           script {
-
-            sh "echo $VERSION > VERSION"
-
             def charts = ["activiti-cloud-query/charts/activiti-cloud-query",
-                          "example-runtime-bundle/charts/example-runtime-bundle",
+                          "example-runtime-bundle/charts/runtime-bundle",
                           "example-cloud-connector/charts/activiti-cloud-connector"]
 
             for (chart in charts) {
-              sh "echo working on::: $chart"
               dir("$chart") {
                 retry(5) {
                   def name = chart.substring(chart.lastIndexOf('/') + 1)
@@ -104,10 +93,9 @@ pipeline {
                            "example-cloud-connector"]
 
             for (module in modules) {
-              sh "echo working on::: $module"
               dir("$module") {
-                sh 'mvn clean deploy'
-                sh 'export VERSION=$VERSION && skaffold build -f skaffold.yaml'
+                sh "mvn clean deploy"
+                sh "export VERSION=$VERSION && export APP_NAME=$module && skaffold build -f skaffold.yaml"
                 sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$module:$VERSION"
               }
             }
@@ -125,11 +113,10 @@ pipeline {
           script {
 
             def modules = ["activiti-cloud-query/charts/activiti-cloud-query",
-                           "example-runtime-bundle/charts/example-runtime-bundle",
+                           "example-runtime-bundle/charts/runtime-bundle",
                            "example-cloud-connector/charts/activiti-cloud-connector"]
 
             for (module in modules) {
-              sh "echo working on::: $module"
               dir("$module") {
                 def name = module.substring(module.lastIndexOf('/') + 1)
                 sh "echo $name"
@@ -162,9 +149,9 @@ pipeline {
               }
             }
 
-//            retry(5) {
-//              sh 'make updatebot/push-version'
-//            }
+            retry(5) {
+              sh 'make updatebot/push-version'
+            }
           }
         }
       }
@@ -284,7 +271,7 @@ pipeline {
         container('maven') {
           script {
             def charts = ["activiti-cloud-query/charts/activiti-cloud-query",
-                          "example-runtime-bundle/charts/example-runtime-bundle",
+                          "example-runtime-bundle/charts/runtime-bundle",
                           "example-cloud-connector/charts/activiti-cloud-connector"]
 
             for (chart in charts) {
@@ -300,7 +287,25 @@ pipeline {
                 }
                 sh 'sleep 10'
                 retry(5) {
-                  sh 'make updatebot/push-version'
+                  sh '''
+                    updatebot push-version --kind maven org.activiti.cloud.dependencies:activiti-cloud-dependencies $VERSION \
+                      org.activiti.cloud.rb:activiti-cloud-runtime-bundle-dependencies  $VERSION \
+                      org.activiti.cloud.connector:activiti-cloud-connectors-dependencies $VERSION \
+                      org.activiti.cloud.query:activiti-cloud-query-dependencies $VERSION \
+                      org.activiti.cloud.notifications.graphql:activiti-cloud-notifications-graphql-dependencies $VERSION  \
+                      org.activiti.cloud.audit:activiti-cloud-audit-dependencies $VERSION \
+                      org.activiti.cloud.modeling:activiti-cloud-modeling-dependencies $VERSION \
+                      org.activiti.cloud.messages:activiti-cloud-messages-dependencies $VERSION \
+                      --merge false
+
+                    updatebot push-version --kind helm activiti-cloud-dependencies $VERSION \
+                        runtime-bundle $VERSION \
+                        activiti-cloud-connector $VERSION \
+                        activiti-cloud-query $VERSION  \
+                        activiti-cloud-modeling $VERSION
+
+                    '''
+//                    updatebot push-version --kind make ACTIVITI_CLOUD_ACCEPTANCE_SCENARIOUS_VERSION $(ACTIVITI_CLOUD_ACCEPTANCE_SCENARIOUS_VERSION)
                 }
               }
             }

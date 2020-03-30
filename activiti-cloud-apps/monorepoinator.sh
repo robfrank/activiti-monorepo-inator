@@ -66,10 +66,10 @@ git add pom.xml
 git commit -m "add parent pom" ./pom.xml
 echo "---> copying new parent pom"
 
-echo "fix runtime bundle"
-git mv  example-runtime-bundle/charts/runtime-bundle  example-runtime-bundle/charts/example-runtime-bundle
-git commit -m "rename runtime bundle chart dir to example-runtime-bundle"
-echo "---> fix runtime bundle"
+#echo "fix runtime bundle"
+#git mv  example-runtime-bundle/charts/runtime-bundle  example-runtime-bundle/charts/example-runtime-bundle
+#git commit -m "rename runtime bundle chart dir to example-runtime-bundle"
+#echo "---> fix runtime bundle"
 
 #echo "fix CRLF on poms"
 #find . -name pom.xml -exec dos2unix {} \;
